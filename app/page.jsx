@@ -1,7 +1,7 @@
 import Feed from '@components/Feed';
 import { Suspense } from 'react';
 import NoteSkeleton from './NoteSkeleton';
-import Modal from '@components/Modal';
+
 
 
 const Home = () => {
