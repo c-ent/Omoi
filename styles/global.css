@@ -153,8 +153,9 @@ grid grid-cols-3 gap-4 */
 
 /* PromptCard Component */
 .prompt_card {
-  @apply rounded-lg break-inside-avoid-column  bg-yellow-200 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit ;
+  @apply rounded-lg break-inside-avoid-column break-words bg-yellow-200 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit ;
   position:relative;
+
 }
 
 .checkbox{
