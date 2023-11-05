@@ -2,7 +2,7 @@ import PromptCard from './PromptCard';
 
 const fetchPosts = async () => {
   try {
-      const response = await fetch('http://localhost:3000/api/prompt', { cache: 'no-store' });
+      const response = await fetch('https://notes-next-js-eight.vercel.app/api/prompt', { cache: 'no-store' });
       if (response.ok) {
         const data = await response.json();
         const notes = await data.filter(post => post.isShown === 1);
