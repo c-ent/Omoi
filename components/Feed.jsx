@@ -5,7 +5,7 @@ const fetchPosts = async () => {
       const response = await fetch('https://notes-next-js-eight.vercel.app/api/prompt', { cache: 'no-store' });
       if (response.ok) {
         const data = await response.json();
-        const notes = await data.filter(post => post.isShown === 1);
+        const notes = data.filter(post => post.isShown === 1);
         return notes;
       } else {
           throw new Error('Request failed with status ' + response.status);
