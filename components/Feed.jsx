@@ -11,24 +11,11 @@ const fetchPosts = async () => {
           throw new Error('Request failed with status ' + response.status);
       }
   } catch (error) {
-      console.log(error);
+      throw new Error('Failed to fetch data')
   }
 }
 
-// async function fetchPosts() {
-//   const response = await fetch('https://notes-next-js-eight.vercel.app/api/prompt', { cache: 'no-store' });
-//   const data = await response.json();
-//   const notes = await data.filter(post => post.isShown === 1);
-  
-//   if (!response.ok) {
-//     throw new Error('Failed to fetch data')
-//   }
-//   return notes;
-  
-// }
-
-
-async function Feed() {
+export default async function Feed() {
     const posts = await fetchPosts();
     return (
       <div className=' prompt_layout'>
@@ -41,5 +28,3 @@ async function Feed() {
       </div>
     );
 }
-
-export default Feed;
