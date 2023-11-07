@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <div
         className={`px-4 md:px-4 sm:px-2 py-6 h-screen flex flex-col  bg-white `}
