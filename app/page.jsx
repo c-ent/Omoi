@@ -49,7 +49,7 @@ const MyProfile = () => {
 
 
       if (status === "loading") {
-        return <div className="flex items-center justify-center h-screen">
+        return <div className="flex items-center justify-center pt-20">
           <Image 
                     src="/assets/images/logo.svg"
                     alt="Logo"
@@ -61,7 +61,7 @@ const MyProfile = () => {
       }
 
       if (status === "unauthenticated") {
-        return <div className="flex flex-col items-center justify-center h-screen">
+        return <div className="flex flex-col items-center justify-center pt-20">
           <Image 
                     src="/assets/images/logoplain.svg"
                     alt="Logo"
