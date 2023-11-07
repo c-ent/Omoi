@@ -137,12 +137,12 @@ const deletednote = () => {
     }
 
     if (status === "unauthenticated") {
-        return <p>Access Denied</p>
+        return <p>Sign in to add notes</p>
     }
 
     return (
         <section className='w-full'>
-        <Link href='/profile' className="red_btn w-10">Back to Profile</Link>
+        <Link href='/' className="red_btn w-10">Back to Profile</Link>
         <h1 className='head_text text-left mb-6'>
         <span className=''>Trash</span>
         </h1>

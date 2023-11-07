@@ -19,61 +19,46 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
 
   
   return (
-    <div className={"prompt_card"} onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}>
+    <div className={`prompt_card ${isSelected ? 'border-2 border-black' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 
       {isHovered || isSelected ? (
-        <div className="checkbox flex justify-between items-start gap-5">
+        <label className="checkbox">
           <input
-          type="checkbox"
-          checked={isSelected}
-          onChange={onToggleSelect} //there are 2 functions inside this function
-          className='w-6 h-6 accent-yellow-100'
+            type="checkbox"
+            checked={isSelected}
+            onChange={onToggleSelect}
+            className="hidden"
+          />
+          <Image
+          src={isSelected ? '/assets/icons/checked.svg' : '/assets/icons/uncheck.svg'}
+          alt="Custom Checkbox"
+          width={30}
+          height={30}
+          className="object-contain"
         />
-        </div>
+        </label>
       ): null}
 
-      
-
-      <p className="my-2 font-satoshi note_heading">{post.prompt}</p>
-      <p 
-        className="font-inter text-sm cursor-pointer" 
-      >
+      <p className="note_heading mb-4">{post.prompt}</p>
+      <p className="font-inter mb-8 text-m cursor-pointer" >
           {post.tag}
       </p>
 
-      {session?.user.id === post.creator._id && pathName === "/profile" &&(
-        <div className='mt-5 flex-end gap-4 pt-3'>
+      {isHovered && pathName === "/" &&(
+        <div className='prompt_card_button'>
           <button onClick={handleEdit} >
             <Image 
-                  src="/assets/icons/pencil.png"
+                  src="/assets/icons/pen.svg"
                   alt="edit"
-                  width={40}
-                  height={40}
+                  width={30}
+                  height={30}
                   className="object-contain"
               />
           </button>
-
-          <button onClick={handleTrash} >
-            <Image 
-                  src="/assets/icons/trash-bin.png"
-                  alt="edit"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-              />
-          </button>
-        
         </div>
       )}
-      {/* <button onClick={toggleDiv}>Toggle Div</button>
-      {toggleDropdown && (
-        <div className="">
-          This is the content of the div.
-        </div>
-      )} */}
-
-      {session?.user.id === post.creator._id && pathName === "/profile/deletednotes" && (
+    
+      {session?.user.id === post.creator._id && pathName === "/deletednotes" && (
         <div className='mt-5 flex-center gap-4 '>
 
           <button onClick={handleRestore} >

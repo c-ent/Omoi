@@ -21,11 +21,10 @@ const Nav = () => {
         setUpProviders();
     },[])
 
-
     return (
-    <nav className="flex-between w-full mb-6 pt-3">
+    <nav className="flex-end w-full mb-6 pt-3">
         {/* Logo */}
-        <Link href="/" className="flex gap-2 flex-center">
+        {/* <Link href="/" className="flex gap-2 flex-center">
             <Image 
                 src="/assets/icons/note.svg"
                 alt="Logo"
@@ -34,18 +33,15 @@ const Nav = () => {
                 className="object-contain"
             />
             <p className="logo_text">Notes</p>
-        </Link>
+        </Link> */}
 
         {/* Desktop Navigation */}
         <div className="sm:flex hidden ">
-
-
-
             {session?.user ? (
                 <div className="flex gap-3 md:gap-5">
-                    <Link href="create-prompt" className="black_btn" >
+                    {/* <Link href="create-prompt" className="black_btn" >
                         Create Note
-                    </Link>
+                    </Link> */}
 
                     <button type="button" onClick={signOut} className="outline_btn">
                         Sign Out
@@ -95,7 +91,7 @@ const Nav = () => {
                         { toggleDropdown && (
                             <div className="dropdown">
                                 <Link
-                                    href="/profile"s
+                                    href="/"s
                                     className="dropdown_link"
                                     onClick={() => setToggleDropdown(false)}
                                 >
