@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 import Profile from "@components/Profile";
+import Image from 'next/image';
 
 const MyProfile = () => {
     const router = useRouter();
@@ -48,11 +49,28 @@ const MyProfile = () => {
 
 
       if (status === "loading") {
-        return <p>Loading...</p>
+        return <div className="flex items-center justify-center h-screen">
+          <Image 
+                    src="/assets/images/logo.svg"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain animate-spin"
+                />
+        </div>
       }
 
       if (status === "unauthenticated") {
-        return <p>Sign in to add notes</p>
+        return <div className="flex flex-col items-center justify-center h-screen">
+          <Image 
+                    src="/assets/images/logoplain.svg"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                />
+          <p className='sidebar_text'>Sign In to Add Notes</p>
+        </div>
       }
     return (
         <Profile
