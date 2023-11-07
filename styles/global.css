@@ -86,7 +86,7 @@
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-bold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 font-inter text-4xl font-semibold leading-[1] text-black sm:text-5xl;
 }
 
 
@@ -140,7 +140,11 @@ grid grid-cols-3 gap-4 */
 
 /* Nav Component */
 .logo_text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  @apply  font-inter font-bold text-3xl text-black tracking-wide;
+}
+
+.sidebar_text{
+  @apply font-inter font-medium text-lg text-black tracking-wide;
 }
 
 .dropdown {
@@ -153,15 +157,24 @@ grid grid-cols-3 gap-4 */
 
 /* PromptCard Component */
 .prompt_card {
-  @apply rounded-lg break-inside-avoid-column break-words bg-yellow-200 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit ;
+  @apply rounded-lg break-inside-avoid-column break-words bg-yellow-200 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter w-full h-fit ;
   position:relative;
+}
 
+.prompt_card_border{
+  @apply rounded-lg border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
 
 .checkbox{
   position: absolute;
   top: -3%;
   left: -3%;
+}
+
+.prompt_card_button{
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
 }
 
 .flex-center {
@@ -183,7 +196,7 @@ grid grid-cols-3 gap-4 */
 /* custom css */
 
 .note_heading {
-  @apply mt-5 text-4xl font-bold leading-[1.15] text-black sm:text-4xl;
+  @apply font-inter text-xl font-semibold leading-[1] text-black sm:text-2xl;
 }
 
 textarea {
