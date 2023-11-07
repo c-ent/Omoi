@@ -68,14 +68,14 @@ const Profile = ({ desc, data, handleEdit, handleTrash }) => {
             </Link>
         </div>
 
-        <div className='flex space-x-2'>
-          <div className="outline_btn">{selectedItems.length} Selected</div>
+        <div className='flex space-x-1'>
+          <p className="outline_btn">{selectedItems.length}</p>
           <button onClick={handleSelectAll} className="black_btn">
             {selectAll ? 'Deselect All' : 'Select All'}
           </button>
           {selectedItems.length > 0 && (
           <button onClick={handleTrashSelectedItems} className="black_btn">
-            Move Selected Items to Trash
+            Trash Note
           </button>
           )}
         </div>
