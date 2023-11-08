@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
                 {children}
               </div> */}
 
-               <div className="w-5/6 px-4 md:px-5 lg:px-5 flex-1 ">
+               <div className="w-4/6 px-4 md:px-5 lg:px-5 flex-1 ">
                 <Nav/>
                 <div className="mx-auto">
                   {children}
