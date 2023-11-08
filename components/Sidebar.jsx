@@ -8,7 +8,8 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
   return (
     <div
-        className={`px-4 md:px-4 sm:px-2 py-6 h-screen flex flex-col  bg-white `}
+    //lg for large screen, md for meduium screen and below, 
+        className={`lg:px-4 md:px-2  py-6 h-screen flex flex-col  bg-white `}
       >
       <ul>
         <li className='flex items-center gap-4 mb-12 '>
