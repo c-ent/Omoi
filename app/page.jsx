@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect} from 'react';
-import { useSession } from 'next-auth/react';
+import { signIn , useSession, getProviders} from 'next-auth/react'; //To use next-auth
 import { useRouter } from 'next/navigation';
 
 import Profile from "@components/Profile";
@@ -10,6 +10,7 @@ const MyProfile = () => {
     const router = useRouter();
     const { data: session,status } = useSession();
     const [ posts, setPosts ] = useState([])
+    const [providers, setProviders] = useState(null);
 
     //if the component is rendered do this
     useEffect(() => {
@@ -21,6 +22,13 @@ const MyProfile = () => {
         };
     
         if (session?.user.id) fetchPosts();
+
+        const setUpProviders = async () => {
+          const response = await getProviders();
+          setProviders(response);
+      }
+
+      setUpProviders();
       }, [session?.user.id]);
     
     const handleEdit = (post) => {
@@ -63,13 +71,23 @@ const MyProfile = () => {
       if (status === "unauthenticated") {
         return <div className="flex flex-col items-center justify-center pt-20">
           <Image 
-                    src="/assets/images/logoplain.svg"
+                    src="/assets/images/blob.jpg"
                     alt="Logo"
-                    width={40}
-                    height={40}
+                    width={300}
+                    height={300}
                     className="object-contain"
                 />
-          <p className='sidebar_text'>Sign In to Add Notes</p>
+          {providers &&
+                    Object.values(providers).map((provider)=>(
+                        <button
+                            type="button"
+                            key="provider.name"
+                            onClick = {() => signIn(provider.id)}
+                            className= "black_btn mt-2"
+                        >
+                            Sign in
+                        </button>
+                    ))}
         </div>
       }
     return (
