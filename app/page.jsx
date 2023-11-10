@@ -57,9 +57,9 @@ const MyProfile = () => {
 
 
       if (status === "loading") {
-        return <div className="flex items-center justify-center pt-20">
+        return <div className="flex items-center justify-center pt-24 w-full h-full">
           <Image 
-                    src="/assets/images/logo.svg"
+                    src="/assets/icons/loader1.svg"
                     alt="Logo"
                     width={40}
                     height={40}
