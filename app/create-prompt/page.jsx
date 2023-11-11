@@ -45,7 +45,7 @@ const CreatePrompt = () => {
 
     }
         return (
-            <><button onClick={() => console.log(post)}>aaaa</button>
+         
             <Form 
             type="Create"
             post={post}
@@ -53,7 +53,7 @@ const CreatePrompt = () => {
             submitting={submitting}
             handleSubmit={createPrompt}
         />
-        </>
+    
         )
 }
 

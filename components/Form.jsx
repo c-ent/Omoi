@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('bg-yellow-200');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,9 +57,9 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       </button>
       
       {isMenuOpen && (
-        <div className='absolute mt-2 w-40 border border-gray-300 rounded-md shadow-md z-10 overflow-hidden'>
+        <div className='flex absolute mt-2 w-40 border border-gray-300 rounded-md shadow-md z-10 overflow-hidden'>
           <button
-            className='w-full h-12 hover:bg-gray-100'
+            className='w-full h-12 hover:bg-gray-100 '
             onClick={() => handleColorSelect('bg-red-200')}
           >
             <div className='w-full h-full bg-red-200'></div>
