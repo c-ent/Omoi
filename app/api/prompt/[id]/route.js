@@ -16,7 +16,7 @@ export const GET = async (request, {params}) => {
 }
 //PATCH (update)
 export const PATCH = async (request, { params }) => {
-    const { prompt,tag,isShown } = await request.json();
+    const { prompt,tag,bgColor,isShown } = await request.json();
 
     try {
         await connectToDB();
@@ -28,6 +28,7 @@ export const PATCH = async (request, { params }) => {
 
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
+        existingPrompt.bgColor = bgColor;
         existingPrompt.isShown = isShown;
 
         await existingPrompt.save();
