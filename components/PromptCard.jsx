@@ -22,7 +22,7 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
     <div 
         className={`prompt_card 
         ${isSelected ? 'border-2 border-black' : ''} 
-        ${ post.bgColor === 'bg-red-200' ? 'bg-red-200' : post.bgColor === 'bg-blue-200' ? 'bg-blue-200' : 'bg-yellow-200'}`}
+        ${ post.bgColor === 'bg-red-200' ? 'bg-red-200' : post.bgColor === 'bg-blue-200' ? 'bg-blue-200' : post.bgColor === 'bg-green-200' ? 'bg-green-200':'bg-yellow-200'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
     >
