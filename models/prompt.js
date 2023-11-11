@@ -16,13 +16,16 @@ const PromptSchema = new Schema({
         type: String,
         required: [true, "Tag is required"],
     },
+    bgColor: {
+        type: String, 
+        default: "bg-yellow-200",    
+    },
     isShown: {
         type: Number, // Setting the type to Number
         default: 1,    // Setting the default value to 1
     },
     
 })
-
 
 const Prompt = models.Prompt || model("Prompt", PromptSchema);
 

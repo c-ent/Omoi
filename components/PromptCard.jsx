@@ -19,7 +19,13 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
 
   
   return (
-    <div className={`prompt_card ${isSelected ? 'border-2 border-black' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div 
+        className={`prompt_card 
+        ${isSelected ? 'border-2 border-black' : ''} 
+        ${ post.bgColor === 'bg-red-200' ? 'bg-red-200' : post.bgColor === 'bg-blue-200' ? 'bg-blue-200' : 'bg-yellow-200'}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+    >
 
       {isHovered || isSelected ? (
         <label className="checkbox">
@@ -42,6 +48,9 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
       <p className="note_heading mb-4">{post.prompt}</p>
       <p className="font-inter mb-8 text-m cursor-pointer" >
           {post.tag}
+      </p>
+      <p className="font-inter mb-8 text-m cursor-pointer" >
+          {post.bgColor}
       </p>
 
       {isHovered && pathName === "/" &&(
