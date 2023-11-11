@@ -22,7 +22,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className='w-full max-w-full flex-start flex-col'>
 
-      <form onSubmit={handleSubmit} className={`prompt_card ${selectedColor}`}>
+      <form onSubmit={handleSubmit} className={`prompt_card ${post.bgColor ? post.bgColor : selectedColor} `}>
 
 <textarea  rows="2" className="my-2 font-satoshi note_heading"
   value={post.prompt}
@@ -36,6 +36,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   type='text'
   required
 />
+
 
 <div className='relative inline-block'>
       <button
@@ -76,6 +77,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onClick={() => handleColorSelect('bg-blue-200')}
           >
             <div className='w-full h-full bg-blue-200'></div>
+          </button>
+
+          <button
+            className='w-full h-12 hover:bg-gray-100'
+            onClick={() => handleColorSelect('bg-green-200')}
+          >
+            <div className='w-full h-full bg-green-200'></div>
           </button>
         </div>
       )}
