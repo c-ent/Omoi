@@ -8,7 +8,7 @@ const CreatePrompt = () => {
     const router = useRouter();
     const {data:session , status} = useSession();
     const [submitting, setSubmitting]  = useState(false) ;
-    const [post, setPost] = useState({prompt: '',tag:'',})
+    const [post, setPost] = useState({prompt: '',tag:'', bgColor:''})
 
     if (status === "loading") {
         return <p>Loading...</p>
@@ -29,6 +29,7 @@ const CreatePrompt = () => {
                     prompt:post.prompt,
                     userId: session?.user.id,
                     tag:post.tag,
+                    bgColor:post.bgColor,
                     isShown: 1, // Set isShown to 1 to show the prompt
                 })
                 
@@ -44,6 +45,7 @@ const CreatePrompt = () => {
 
     }
         return (
+            <><button onClick={() => console.log(post)}>aaaa</button>
             <Form 
             type="Create"
             post={post}
@@ -51,6 +53,7 @@ const CreatePrompt = () => {
             submitting={submitting}
             handleSubmit={createPrompt}
         />
+        </>
         )
 }
 

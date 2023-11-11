@@ -157,7 +157,7 @@ grid grid-cols-3 gap-4 */
 
 /* PromptCard Component */
 .prompt_card {
-  @apply rounded-lg break-inside-avoid-column break-words bg-yellow-200 bg-clip-padding p-6 backdrop-blur-lg backdrop-filter w-full h-fit ;
+  @apply rounded-lg break-inside-avoid-column break-words  bg-clip-padding p-6 backdrop-blur-lg backdrop-filter w-full h-fit ;
   position:relative;
 }
 
