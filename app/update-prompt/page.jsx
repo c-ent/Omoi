@@ -12,14 +12,14 @@ const EditPrompt = () => {
     const promptId = searchParams.get('id');
     const {data:session } = useSession();
     const [submitting, setSubmitting]  = useState(false) ;
-    const [post, setPost] = useState({ prompt: "", tag: "", });
+    const [post, setPost] = useState({ prompt: "", tag: "", bgColor:''});
 
     useEffect(() => {
         const getPromptDetails = async () => {
         const response = await fetch(`/api/prompt/${promptId}`);
         const data = await response.json();
     
-        setPost({prompt: data.prompt,tag: data.tag,});
+        setPost({prompt: data.prompt,tag: data.tag,bgColor: data.bgColor});
         };
     
         if (promptId) getPromptDetails();
@@ -39,7 +39,8 @@ const EditPrompt = () => {
                 method: "PATCH",
                 body: JSON.stringify({
                     prompt:post.prompt,
-                    tag:post.tag
+                    tag:post.tag,
+                    bgColor:post.bgColor
                 })
             })
 
