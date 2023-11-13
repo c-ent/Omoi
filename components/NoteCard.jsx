@@ -19,7 +19,7 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
 
   return (
     <div 
-        className={`note_card 
+        className={`note_card  hover:shadow-xl hover:shadow-gray-300
         ${isSelected ? 'border-2 border-black' : ''} 
         ${ note.bgColor === 'bg-red-200' ? 'bg-red-200' : note.bgColor === 'bg-blue-200' ? 'bg-blue-200' : note.bgColor === 'bg-green-200' ? 'bg-green-200':'bg-yellow-200'}`}
         onMouseEnter={handleMouseEnter}
@@ -69,7 +69,7 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
 
           <button onClick={handleRestore} >
             <Image 
-                  src="/assets/icons/restore.png"
+                  src="/assets/icons/restore.svg"
                   alt="edit"
                   width={30}
                   height={30}
@@ -79,10 +79,10 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
 
           <button onClick={handleDelete} >
             <Image 
-                  src="/assets/icons/delete.png"
+                  src="/assets/icons/delete.svg"
                   alt="edit"
-                  width={25}
-                  height={25}
+                  width={30}
+                  height={30}
                   className="object-contain"
               />
           </button>

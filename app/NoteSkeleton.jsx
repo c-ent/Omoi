@@ -21,6 +21,15 @@ const NoteSkeleton = () => {
 
       <NoteCardSkeleton />
       <NoteCardSkeleton />
+      <NoteCardSkeleton />
+
+      <NoteCardSkeleton />
+      <NoteCardSkeleton />
+      <NoteCardSkeleton />
+
+      <NoteCardSkeleton />
+      <NoteCardSkeleton />
+      <NoteCardSkeleton />
 
 
       </div>

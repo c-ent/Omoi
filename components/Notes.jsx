@@ -68,7 +68,18 @@ const Notes = ({ data, handleEdit, handleTrash, loading }) => {
         </div>
         
         <div >
-          {loading ? ( <NoteSkeleton />) : data.length > 0 ? (
+          { loading ? <NoteSkeleton /> : 
+              data.length === 0 ? <div className="pt-16 flex flex-col items-center">
+              <Image 
+                src="/assets/images/logobw.svg"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+              <p className="text-gray-500 ">Notes you add appear here</p>
+          </div> : 
+            null}
             <div className='notes_layout'>
               {data.map(note => (
                 <NoteCard
@@ -81,18 +92,7 @@ const Notes = ({ data, handleEdit, handleTrash, loading }) => {
                 />
               ))}
             </div>
-          ) : (
-            <div className="pt-16 flex flex-col items-center">
-                <Image 
-                  src="/assets/images/logobw.svg"
-                  alt="Logo"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-                />
-                <p className="text-gray-500 ">Notes you add appear here</p>
-            </div>
-          )}
+      
         </div>
       </div>
   );
