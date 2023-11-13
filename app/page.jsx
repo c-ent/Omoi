@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 
 import Profile from "@components/Profile";
 import Image from 'next/image';
+import NoteSkeleton from './NoteSkeleton';
 
 const MyProfile = () => {
     const router = useRouter();
     const { data: session,status } = useSession();
     const [ posts, setPosts ] = useState([])
     const [providers, setProviders] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     //if the component is rendered do this
     useEffect(() => {
@@ -19,8 +21,9 @@ const MyProfile = () => {
           const data = await response.json();
           const filteredPosts = data.filter(post => post.isShown === 1);
           setPosts(filteredPosts);
+          setLoading(false);
         };
-    
+        
         if (session?.user.id) fetchPosts();
 
         const setUpProviders = async () => {
@@ -29,7 +32,11 @@ const MyProfile = () => {
       }
 
       setUpProviders();
+      
       }, [session?.user.id]);
+
+      // if (loading) return <NoteSkeleton />;
+      // if (!posts || posts.length < 1) return 'No data';
     
     const handleEdit = (post) => {
         router.push(`/update-prompt?id=${post._id}`)
@@ -95,8 +102,12 @@ const MyProfile = () => {
           data={posts}
           handleEdit={handleEdit}
           handleTrash={handleTrash}
+          setLoading={setLoading}
+          loading={loading}
+          
         />
       );
     };
 
 export default MyProfile
+

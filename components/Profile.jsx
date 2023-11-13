@@ -2,8 +2,9 @@ import Link from "next/link";
 import PromptCard from "./PromptCard";
 import { useState, useEffect } from 'react'; //To use state and effect hooks
 import Image from "next/image";
+import NoteSkeleton from "@app/NoteSkeleton";
 
-const Profile = ({ desc, data, handleEdit, handleTrash }) => {
+const Profile = ({ desc, data, handleEdit, handleTrash, loading }) => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
 
@@ -80,22 +81,29 @@ const Profile = ({ desc, data, handleEdit, handleTrash }) => {
           )}
         </div>
         
-        <div className=' prompt_layout'>
-          {data.map((post) => (
-            
-            <PromptCard
-              key={post._id}
-              post={post}
-              handleEdit={() => handleEdit && handleEdit(post)}
-              handleTrash={() => handleTrash && handleTrash(post)}
-              isSelected={selectedItems.includes(post._id)}
-              onToggleSelect={() => toggleSelect(post._id)}
-            />
-            
-          ))}
-        </div>
+        <div className='prompt_layout'>
+  {loading ? (
+    <NoteSkeleton />
+  ) : data.length > 0 ? (
+    // Map over the data and render PromptCard components
+    data.map(post => (
+      <PromptCard
+        key={post._id}
+        post={post}
+        handleEdit={() => handleEdit && handleEdit(post)}
+        handleTrash={() => handleTrash && handleTrash(post)}
+        isSelected={selectedItems.includes(post._id)}
+        onToggleSelect={() => toggleSelect(post._id)}
+      />
+    ))
+  ) : (
+    <p>No notes found.</p>
+  )}
+</div>
+
       </div>
   );
 };
 
 export default Profile;
+
