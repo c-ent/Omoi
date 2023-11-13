@@ -1,20 +1,20 @@
 import { Schema, model, models } from "mongoose";
 
 
-const PromptSchema = new Schema({
+const NoteSchema = new Schema({
     creator:{
         type: Schema.Types.ObjectId,
         ref: "User",
         required: [true, "User is required"],
     },
 
-    prompt:{
+    noteTitle:{
         type: String,
-        required: [true, "Prompt is required"],
+        required: [true, "Title is required"],
     },
-    tag:{
+    noteBody:{
         type: String,
-        required: [true, "Tag is required"],
+        required: [true, "BodyText is required"],
     },
     bgColor: {
         type: String, 
@@ -27,6 +27,6 @@ const PromptSchema = new Schema({
     
 })
 
-const Prompt = models.Prompt || model("Prompt", PromptSchema);
+const Note = models.Note || model("Note", NoteSchema);
 
-export default Prompt;
+export default Note;

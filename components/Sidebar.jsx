@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <div
     //lg for large screen, md for meduium screen and below, 
-        className={`lg:px-4 md:px-2  py-6 h-screen flex flex-col  bg-white `}
+        className={`lg:px-4 md:px-2 px-2 py-6 h-screen flex flex-col bg-white `}
       >
       <ul>
         <li className='flex items-center gap-4 mb-12 '>
@@ -62,15 +62,11 @@ const Sidebar = () => {
             <p className="sidebar_text ">
               Trash
             </p>
-  
           )}
           </Link>
         </li>
         </div>
       </ul>
-      {/* <li className="mt-auto text-center list-none">
-          <p className="sidebar_text"> {open && "セント"}</p>
-      </li> */}
     </div>
     
   )

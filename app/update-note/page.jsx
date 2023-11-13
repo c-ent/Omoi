@@ -6,41 +6,39 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 import Form from "@components/Form"
 
-const EditPrompt = () => {
+const EditNote = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const promptId = searchParams.get('id');
+    const noteId = searchParams.get('id');
     const {data:session } = useSession();
     const [submitting, setSubmitting]  = useState(false) ;
-    const [post, setPost] = useState({ prompt: "", tag: "", bgColor:''});
+    const [note, setNote] = useState({ title: "", body: "", bgColor:''});
 
     useEffect(() => {
-        const getPromptDetails = async () => {
-        const response = await fetch(`/api/prompt/${promptId}`);
+        
+        const getNoteDetails = async () => { 
+        const response = await fetch(`/api/note/${noteId}`);
         const data = await response.json();
-    
-        setPost({prompt: data.prompt,tag: data.tag,bgColor: data.bgColor});
+        setNote({title: data.noteTitle, 
+                body: data.noteBody,
+                bgColor: data.bgColor});
         };
-    
-        if (promptId) getPromptDetails();
-    },[promptId]);
+        if (noteId) getNoteDetails();
+    },[noteId]);
 
 
-
-
-    const updatePrompt = async (e) => {
+    const updateNote = async (e) => {
         e.preventDefault(); // prevent default form submit reload
         setSubmitting(true);
-
-        if(!promptId) return alert("Prompt ID is missing");
+        if(!noteId) return alert("Note ID is missing");
 
         try {
-            const response = await fetch(`/api/prompt/${promptId}`, {
+            const response = await fetch(`/api/note/${noteId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    prompt:post.prompt,
-                    tag:post.tag,
-                    bgColor:post.bgColor
+                    noteTitle:note.title,
+                    noteBody:note.body,
+                    bgColor:note.bgColor
                 })
             })
 
@@ -57,12 +55,12 @@ const EditPrompt = () => {
     return (
         <Form
         type='Edit'
-        post={post}
-        setPost={setPost}
+        note={note}
+        setNote={setNote}
         submitting={submitting}
-        handleSubmit={updatePrompt}
+        handleSubmit={updateNote}
         />
     )
 }
 
-export default EditPrompt
+export default EditNote

@@ -22,7 +22,7 @@ const Nav = () => {
     },[])
 
     return (
-    <nav className="flex-end w-full mb-6 pt-3">
+    <nav className="flex-end w-full mb-6 pt-5 h-fit ">
         {/* Logo */}
         {/* <Link href="/" className="flex gap-2 flex-center">
             <Image 
@@ -36,10 +36,10 @@ const Nav = () => {
         </Link> */}
 
         {/* Desktop Navigation */}
-        <div className="sm:flex hidden ">
+        <div className="sm:flex hidden">
             {session?.user ? (
                 <div className="flex gap-3 md:gap-5">
-                    {/* <Link href="create-prompt" className="black_btn" >
+                    {/* <Link href="create-note" className="black_btn" >
                         Create Note
                     </Link> */}
 
@@ -90,22 +90,6 @@ const Nav = () => {
 
                         { toggleDropdown && (
                             <div className="dropdown">
-                                <Link
-                                    href="/"s
-                                    className="dropdown_link"
-                                    onClick={() => setToggleDropdown(false)}
-                                >
-                                    My Profile
-                                </Link>
-
-                                <Link
-                                    href="/create-prompt"
-                                    className="dropdown_link"
-                                    onClick={() => setToggleDropdown(false)}
-                                >
-                                    Create Prompt
-                                </Link>
-
                                 <button type="button" onClick={()=> {
                                     setToggleDropdown(false);
                                     signOut();
