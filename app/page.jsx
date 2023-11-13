@@ -65,25 +65,23 @@ const MyProfile = () => {
 
       if (status === "loading") {
         return <div className="flex items-center justify-center pt-24 w-full h-full">
-          <Image 
-                    src="/assets/icons/loader1.svg"
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    className="object-contain animate-spin"
-                />
+          <div class="flex gap-2">
+    <div class="w-5 h-5 rounded-full animate-pulse bg-orange-400"></div>
+    <div class="w-5 h-5 rounded-full animate-pulse bg-orange-400"></div>
+    <div class="w-5 h-5 rounded-full animate-pulse bg-orange-400"></div>
+</div>
         </div>
       }
 
       if (status === "unauthenticated") {
         return <div className="flex flex-col items-center justify-center pt-20">
-          <Image 
-                    src="/assets/images/blob.jpg"
+          {/* <Image 
+                    src="/assets/images/blob.svg"
                     alt="Logo"
-                    width={300}
-                    height={300}
+                    width={40}
+                    height={40}
                     className="object-contain"
-                />
+                /> */}
           {providers &&
                     Object.values(providers).map((provider)=>(
                         <button
@@ -92,7 +90,7 @@ const MyProfile = () => {
                             onClick = {() => signIn(provider.id)}
                             className= "black_btn mt-2"
                         >
-                            Sign in
+                            Sign in to add Notes
                         </button>
                     ))}
         </div>
