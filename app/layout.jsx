@@ -5,8 +5,9 @@ import Sidebar from '@components/Sidebar';
 
 
 export const metadata = {
-    title:"Notes",
-    description:"This is my app",
+    title:"Omoi",
+    description:"An intuitive note application for managing and storing your notes seamlessly",
+    logo: "/assets/images/logo.svg"
 }
 
 export default function RootLayout({ children }) {
