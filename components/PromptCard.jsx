@@ -49,9 +49,7 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
       <p className="font-inter mb-8 text-m cursor-pointer" >
           {post.tag}
       </p>
-      <p className="font-inter mb-8 text-m cursor-pointer" >
-          {post.bgColor}
-      </p>
+
 
       {isHovered && pathName === "/" &&(
         <div className='prompt_card_button'>
