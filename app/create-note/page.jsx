@@ -4,13 +4,13 @@ import { useSession} from "next-auth/react"
 import { useRouter } from 'next/navigation'
 import Form from "@components/Form"
 
-const CreatePrompt = () => {
+const CreateNote = () => {
     const router = useRouter();
     const {data:session , status} = useSession();
     const [submitting, setSubmitting]  = useState(false) ;
-    const [post, setPost] = useState({prompt: '',tag:'', bgColor:''})
+    const [note, setNote] = useState({title: '',body:'', bgColor:''})
 
-    if (status === "loading") {
+    if (status === "loading") {     
         return <p>Loading...</p>
     }
 
@@ -18,26 +18,29 @@ const CreatePrompt = () => {
         return <p>Access Denied</p>
     }
 
-    const createPrompt = async (e) => {
+    const storeNote = async (e) => {
         e.preventDefault(); // prevent default form submit reload
         setSubmitting(true);
         router.refresh();
+        console.log(note)
         try {
-            const response = await fetch("/api/prompt/new", {
+            const response = await fetch("/api/note/new", {
                 method: "POST",
                 body: JSON.stringify({
-                    prompt:post.prompt,
                     userId: session?.user.id,
-                    tag:post.tag,
-                    bgColor:post.bgColor,
-                    isShown: 1, // Set isShown to 1 to show the prompt
+                    noteTitle:note.title,
+                    noteBody:note.body,
+                    bgColor:note.bgColor,
+                    isShown: 1, // Set isShown to 1 to show the note
                 })
+
                 
             })
             if(response.ok){
                 router.push('/');
             }
         } catch(error){
+            console.log(response)
             console.log(error)
         } finally {
             setSubmitting(false);
@@ -48,13 +51,13 @@ const CreatePrompt = () => {
          
             <Form 
             type="Create"
-            post={post}
-            setPost={setPost}
+            note={note}
+            setNote={setNote}
             submitting={submitting}
-            handleSubmit={createPrompt}
+            handleSubmit={storeNote}
         />
     
         )
 }
 
-export default CreatePrompt
+export default CreateNote

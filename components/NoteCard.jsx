@@ -2,9 +2,9 @@
 import {useState} from 'react';
 import Image from "next/image";
 import {useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname} from "next/navigation";
 
-const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect,handleEdit,  handleDelete,handleTrash, handleRestore}) => {
+const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, handleRestore}) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const [isHovered, setIsHovered] = useState(false);
@@ -17,12 +17,11 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
     setIsHovered(false);
   };
 
-  
   return (
     <div 
-        className={`prompt_card 
+        className={`note_card 
         ${isSelected ? 'border-2 border-black' : ''} 
-        ${ post.bgColor === 'bg-red-200' ? 'bg-red-200' : post.bgColor === 'bg-blue-200' ? 'bg-blue-200' : post.bgColor === 'bg-green-200' ? 'bg-green-200':'bg-yellow-200'}`}
+        ${ note.bgColor === 'bg-red-200' ? 'bg-red-200' : note.bgColor === 'bg-blue-200' ? 'bg-blue-200' : note.bgColor === 'bg-green-200' ? 'bg-green-200':'bg-yellow-200'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
     >
@@ -45,14 +44,14 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
         </label>
       ): null}
 
-      <p className="note_heading mb-4">{post.prompt}</p>
+      <p className="note_heading mb-4">{note.noteTitle}</p>
       <p className="font-inter mb-8 text-m cursor-pointer" >
-          {post.tag}
+          {note.noteBody}
       </p>
 
 
       {isHovered && pathName === "/" &&(
-        <div className='prompt_card_button'>
+        <div className='note_card_button'>
           <button onClick={handleEdit} >
             <Image 
                   src="/assets/icons/pen.svg"
@@ -65,7 +64,7 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
         </div>
       )}
     
-      {session?.user.id === post.creator._id && pathName === "/deletednotes" && (
+      {session?.user.id === note.creator._id && pathName === "/deletednotes" && (
         <div className='mt-5 flex-center gap-4 '>
 
           <button onClick={handleRestore} >
@@ -94,4 +93,4 @@ const PromptCard = ({post, handleTagClick,onCardClick, isSelected,onToggleSelect
   )
 }
 
-export default PromptCard
+export default NoteCard

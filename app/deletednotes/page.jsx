@@ -1,39 +1,41 @@
 "use client"
 import { useState, useEffect} from 'react';
 import { useSession } from 'next-auth/react';
-import PromptCard from '@components/PromptCard';
+import NoteCard from '@components/NoteCard';
 import Link from 'next/link';
 
 const deletednote = () => {
     const { data: session,status } = useSession();
-    const [ posts, setPosts ] = useState([])
+    const [ notes, setNotes ] = useState([])
     const [selectedItems, setSelectedItems] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            const response = await fetch(`/api/users/${session?.user.id}/posts`);
+        const fetchNotes = async () => {
+            const response = await fetch(`/api/users/${session?.user.id}/notes`);
             const data = await response.json();
-            const filteredPosts = data.filter(post => post.isShown === 0);
-            setPosts(filteredPosts);
+            const filteredNotes = data.filter(note => note.isShown === 0);
+            setNotes(filteredNotes);
+            setLoading(false);
         };
-        if (session?.user.id) fetchPosts();
+        if (session?.user.id) fetchNotes();
     }, [session?.user.id]);
 
     //Multi Select
-    const toggleSelect = (postId) => {
-        if (selectedItems.includes(postId)) {
-        setSelectedItems(selectedItems.filter((id) => id !== postId));
+    const toggleSelect = (noteId) => {
+        if (selectedItems.includes(noteId)) {
+        setSelectedItems(selectedItems.filter((id) => id !== noteId));
         } else {
-        setSelectedItems([...selectedItems, postId]);
+        setSelectedItems([...selectedItems, noteId]);
         }
     };
 
     // Select All 
     const handleSelectAll = () => {
         if (!selectAll) {
-            const allPostIds = posts.map((post) => post._id);
-            setSelectedItems(allPostIds);
+            const allNoteIds = notes.map((note) => note._id);
+            setSelectedItems(allNoteIds);
         } else {
             setSelectedItems([]);
         }
@@ -41,34 +43,36 @@ const deletednote = () => {
     };
 
 
-    const handleDelete = async (post) => {
+    const handleDelete = async (note) => {
             try {
-                await fetch(`/api/prompt/${post._id.toString()}`, {
+                await fetch(`/api/note/${note._id.toString()}`, {
                     method: "DELETE",
             });
-            setPosts((prevPosts) => {
-                const filteredPosts = prevPosts.filter((item) => item._id !== post._id);
-                return filteredPosts;
+            setNotes((prevNotes) => {
+                const filteredNotes = prevNotes.filter((item) => item._id !== note._id);
+                return filteredNotes;
             });
           } catch (error) {
             console.log(error);
           }
     };
 
-    const restoreNote = async (post) => {
+    const restoreNote = async (note) => {
+        console.log(note)
             try {
-                await fetch(`/api/prompt/${post._id}`, {
+                await fetch(`/api/note/${note._id}`, {
                     method: "PATCH",
                     body: JSON.stringify({
-                        prompt:post.prompt,
-                        tag:post.tag,
+                        noteTitle:note.noteTitle,
+                        noteBody:note.noteBody,
+                        bgColor:note.bgColor,
                         isShown: 1,
                     })
                 })
 
-            setPosts((prevPosts) => {
-                const filteredPosts = prevPosts.filter((item) => item._id !== post._id);
-                return filteredPosts;
+            setNotes((prevNotes) => {
+                const filteredNotes = prevNotes.filter((item) => item._id !== note._id);
+                return filteredNotes;
             });
             } catch (error) {
                 console.log(error);
@@ -76,57 +80,18 @@ const deletednote = () => {
         
     };
 
-    // const restoreAllNotes = async () => {
-    //         try {
-    //             const updatedPosts = [];
-    //             for (const post of posts) {
-    //                 await fetch(`/api/prompt/${post._id}`, {
-    //                     method: "PATCH",
-    //                     body: JSON.stringify({
-    //                         prompt: post.prompt,
-    //                         tag: post.tag,
-    //                         isShown: 1,
-    //                     })
-    //                 });
-    //                 if (post.isShown !== 1) {
-    //                     updatedPosts.push(post);
-    //                 }
-    //             }
-    //             const filteredPosts = posts.filter((post) => !updatedPosts.includes(post));
-    //             setPosts(filteredPosts);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    // };
-        
-    // const emptyTrash = async () => {
-    //     const hasConfirmed = confirm("Are you sure you want to delete all posts?");
-    //     if (hasConfirmed) {
-    //         try {
-    //             for (const post of posts) {
-    //                 await fetch(`/api/prompt/${post._id.toString()}`, {
-    //                     method: "DELETE",
-    //                 });
-    //             }
-    //             setPosts([]); // Clear the posts array
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-    // };
-
     const handleDeleteSelectedItems = () => {
-        selectedItems.forEach((postId) => {
-        handleDelete(posts.find((post) => post._id === postId));
-        console.log(postId)
+        selectedItems.forEach((noteId) => {
+        handleDelete(notes.find((note) => note._id === noteId));
+        console.log(noteId)
         });
         setSelectedItems([]);
     };
     
     const handleRestoreSelectedItems = () => {
-        selectedItems.forEach((postId) => {
-        restoreNote(posts.find((post) => post._id === postId));
-        console.log(postId)
+        selectedItems.forEach((noteId) => {
+        restoreNote(notes.find((note) => note._id === noteId));
+        console.log(noteId)
         });
         setSelectedItems([]);
     };
@@ -164,15 +129,16 @@ const deletednote = () => {
             )}
         </div>
 
-        <div className='mt-10 prompt_layout'>
-            {posts.map((post) => (
-            <PromptCard
-                key={post._id}
-                post={post}
-                handleDelete={() => handleDelete(post)}
-                handleRestore={() => restoreNote(post)}
-                onToggleSelect={() => toggleSelect(post._id)}
-                isSelected={selectedItems.includes(post._id)}
+        <div className='mt-10 notes_layout'>
+            { loading ? <p>Loading...</p> : notes.length === 0 ? <p>No notes in trash</p> : null}
+            {notes.map((note) => (
+            <NoteCard
+                key={note._id}
+                note={note}
+                handleDelete={() => handleDelete(note)}
+                handleRestore={() => restoreNote(note)}
+                onToggleSelect={() => toggleSelect(note._id)}
+                isSelected={selectedItems.includes(note._id)}
             />
         ))}
         </div>
