@@ -85,7 +85,6 @@ const Profile = ({ desc, data, handleEdit, handleTrash, loading }) => {
   {loading ? (
     <NoteSkeleton />
   ) : data.length > 0 ? (
-    // Map over the data and render PromptCard components
     data.map(post => (
       <PromptCard
         key={post._id}
