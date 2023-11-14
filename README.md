@@ -1,9 +1,6 @@
-## About The Project
+<h1>Omoi</h1>
 
 ![image](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/web.PNG)
-
-
-<h1>Omoi</h1>
 
 Omoi is an open-source note tool for storing and managing notes effortlessly.
 
@@ -17,29 +14,13 @@ Secure: Your data is your own. Omoi ensures the privacy and security of your not
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
+* [![Next][Next.js]][Next-url]
 * ![MongoDB]
 * ![Tailwind]
-
-
-
+* ![NextAuth]
 
 <!-- ![image](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/mobile.PNG) -->
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
