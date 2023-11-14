@@ -12,8 +12,6 @@ Secure: Your data is your own. Omoi ensures the privacy and security of your not
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 * [![React][React.js]][React-url]
 * [![Next][Next.js]][Next-url]
 * ![MongoDB]
