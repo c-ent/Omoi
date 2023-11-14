@@ -19,8 +19,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![MongoDB][React.js]][React-url]
 * ![MongoDB]
+* ![Tailwind]
 
 
 
@@ -61,3 +61,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 [JQuery-url]: https://jquery.com 
 
 [MongoDB]: https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white
+[Tailwind]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
