@@ -2,9 +2,8 @@ import { connectToDB } from '@utils/database';
 import Note from "@models/notes";
 
 
-export const POST = async (req, res) => {
+export const POST = async (req) => {
     const { userId, noteTitle, noteBody , bgColor } = await req.json();
-    console.log(req.json())
     try{
         await connectToDB();
         const newNote = new Note({
@@ -21,6 +20,5 @@ export const POST = async (req, res) => {
         console.log(error)
         return(error)
         
-        // return new Response("Failed to create new asdad", 500)
     }
 }

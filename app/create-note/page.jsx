@@ -32,8 +32,9 @@ const CreateNote = () => {
                     noteBody:note.body,
                     bgColor:note.bgColor,
                     isShown: 1, // Set isShown to 1 to show the note
+                
                 })
-
+                
                 
             })
             if(response.ok){
