@@ -20,7 +20,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![MongoDB][React.js]][React-url]
-* [![MongoDB]][MongoDB-url]
+* ![MongoDB]
 
 
 
