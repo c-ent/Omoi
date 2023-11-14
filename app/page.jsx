@@ -24,8 +24,8 @@ const MyNotes = () => {
         if (session?.user.id) fetchNotes();
 
         const setUpProviders = async () => {
-          const response = await getProviders();
-          setProviders(response);
+        const response = await getProviders();
+        setProviders(response);
       }
       setUpProviders();
       }, [session?.user.id]);
@@ -35,7 +35,7 @@ const MyNotes = () => {
     }
 
     const handleTrash = async (note) => {
-      console.log(note)
+          // console.log(note)
           try {
               await fetch(`/api/note/${note._id}`, {
               method: "PATCH",
