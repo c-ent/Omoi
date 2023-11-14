@@ -13,12 +13,14 @@ export const POST = async (req, res) => {
             noteBody,
             bgColor
         })
-
+        console.log(newNote)
         await newNote.save();
         
         return new Response(JSON.stringify(newNote), {status: 201,})
     } catch(error) {
         console.log(error)
+        return(error)
+        
         // return new Response("Failed to create new asdad", 500)
     }
 }
