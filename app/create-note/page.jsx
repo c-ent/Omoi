@@ -22,7 +22,6 @@ const CreateNote = () => {
         e.preventDefault(); // prevent default form submit reload
         setSubmitting(true);
         router.refresh();
-        console.log(note)
         try {
             const response = await fetch("/api/note/new", {
                 method: "POST",
@@ -32,10 +31,7 @@ const CreateNote = () => {
                     noteBody:note.body,
                     bgColor:note.bgColor,
                     isShown: 1, // Set isShown to 1 to show the note
-                
                 })
-                
-                
             })
             if(response.ok){
                 router.push('/');

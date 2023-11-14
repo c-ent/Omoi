@@ -12,12 +12,10 @@ export const POST = async (req) => {
             noteBody,
             bgColor
         })
-        console.log(newNote)
         await newNote.save();
-        
         return new Response(JSON.stringify(newNote), {status: 201,})
     } catch(error) {
-        console.log(error)
+        // console.log(error)
         return(error)
         
     }
