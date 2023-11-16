@@ -3,8 +3,6 @@
     import User from '@models/user';   //importing the user model 
     import { connectToDB } from '@utils/database';  //establishing connection to the db
 
-
-
     const handler = NextAuth({
         //setup the providers that will be used
         providers: [
