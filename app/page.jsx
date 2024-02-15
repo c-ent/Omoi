@@ -67,26 +67,48 @@ const MyNotes = () => {
       }
 
       if (status === "unauthenticated") {
-        return <div className="flex flex-col items-center justify-center pt-20">
-                  <Image 
-                    src="/assets/images/blob.svg"
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                {providers &&
-                  Object.values(providers).map((provider)=>(
-                    <button
-                      type="button"
-                      key="provider.name"
-                      onClick = {() => signIn(provider.id)}
-                      className= "font-semibold"
-                    >
-                      Sign in to add Notes
-                    </button>
-                          ))}
-              </div>
+        return <div className="flex flex-col items-center pt-20 min-h-screen" 
+        style={{
+          position: 'relative'}}
+        >
+          <div
+           style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url(/assets/images/app.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'top',
+            backgroundRepeat: 'no-repeat',
+            filter: 'blur(15px)',
+            zIndex: -1
+        }}
+          
+          >
+             </div>
+        <Image 
+            src="/assets/images/blob.svg"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+        />
+        {providers &&
+            Object.values(providers).map((provider)=>(
+                <button
+                    type="button"
+                    key={provider.name}
+                    onClick={() => signIn(provider.id)}
+                    className="font-semibold"
+                >
+                    Sign in to add Notes
+                </button>
+            ))}
+           
+    </div>
+    
       }
     return (
         <Notes
