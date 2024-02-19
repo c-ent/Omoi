@@ -88,13 +88,16 @@ const MyNotes = () => {
           
           >
              </div>
-        <Image 
+             <div className='bg-yellow-200'>
+             <Image 
             src="/assets/images/blob.svg"
             alt="Logo"
             width={40}
             height={40}
             className="object-contain"
         />
+             </div>
+      
         {providers &&
             Object.values(providers).map((provider)=>(
                 <button
