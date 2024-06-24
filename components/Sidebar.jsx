@@ -34,7 +34,7 @@ const Sidebar = () => {
         </li>
         <div>
         <li>
-          <Link href="/" className="flex gap-2 mb-8 items-center mx-auto">
+          <Link href="/notes" className="flex gap-2 mb-8 items-center mx-auto">
                 <Image 
                     src="/assets/icons/note.svg"
                     alt="Logo"
