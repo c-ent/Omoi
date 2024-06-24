@@ -1,4 +1,6 @@
 "use client"
+import Nav from "@components/Nav"
+import Sidebar from "@components/Sidebar"
 import { useSession, getSession } from "next-auth/react"
 
 export default function Page() {
@@ -10,9 +12,14 @@ export default function Page() {
   }
 
   return (
-    <>
-      <h1>Protected Page</h1>
-      <p>You can view this page because you are signed in.</p>
-    </>
+    <div classname="flex">
+      <Sidebar />
+        <div className="w-4/6 px-4 md:px-5 lg:px-5 flex-1 ">
+        <Nav/>
+        <div className="mx-auto">
+          {children}
+        </div>
+        </div> 
+    </div>
   )
 }
