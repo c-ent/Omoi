@@ -18,6 +18,7 @@ const Form = ({ note, setNote,  handleSubmit }) => {
   };
 
   return (
+    <Suspense>
     <section className='w-full max-w-full flex-start flex-col'>
       <form onSubmit={handleSubmit} className={`note_card ${note.bgColor ? note.bgColor : selectedColor} `}>
         <textarea  rows="2" className="my-2 font-satoshi note_heading"
@@ -68,6 +69,7 @@ const Form = ({ note, setNote,  handleSubmit }) => {
         </div>
       </form>
     </section>
+    </Suspense>
   );
 };
 
