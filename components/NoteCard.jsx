@@ -64,7 +64,7 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
         </div>
       )}
     
-      {session?.user.id === note.creator._id && pathName === "/deletednotes" && (
+      {session?.user.id === note.creator._id && pathName === "notes/deletednotes" && (
         <div className='mt-5 flex-center gap-4 '>
 
           <button onClick={handleRestore} >
