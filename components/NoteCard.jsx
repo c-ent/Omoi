@@ -50,7 +50,7 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
       </p>
 
 
-      {isHovered && pathName === "/" &&(
+      {isHovered && pathName === "/notes" &&(
         <div className='note_card_button'>
           <button onClick={handleEdit} >
             <Image 
@@ -63,7 +63,8 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
           </button>
         </div>
       )}
-    
+
+     
       {session?.user.id === note.creator._id && pathName === "notes/deletednotes" && (
         <div className='mt-5 flex-center gap-4 '>
 
@@ -75,6 +76,7 @@ const NoteCard = ({note, isSelected,onToggleSelect,handleEdit,  handleDelete, ha
                   height={30}
                   className="object-contain"
               />
+              edit
           </button>
 
           <button onClick={handleDelete} >
