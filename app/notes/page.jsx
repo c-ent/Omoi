@@ -31,7 +31,7 @@ const MyNotes = () => {
       }, [session?.user.id]);
     
     const handleEdit = (note) => {
-        router.push(`/update-note?id=${note._id}`)
+        router.push(`notes/update-note?id=${note._id}`)
     }
 
     const handleTrash = async (note) => {
