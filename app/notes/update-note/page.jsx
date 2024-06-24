@@ -68,13 +68,21 @@ const EditNoteContent = ({ noteId }) => {
     );
 };
 
-const EditNote = () => {
+const EditNoteWrapper = () => {
     const searchParams = useSearchParams();
     const noteId = searchParams.get('id');
 
+    if (!noteId) {
+        return <div>Note ID is missing</div>;
+    }
+
+    return <EditNoteContent noteId={noteId} />;
+}
+
+const EditNote = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            {noteId && <EditNoteContent noteId={noteId} />}
+            <EditNoteWrapper />
         </Suspense>
     );
 }
