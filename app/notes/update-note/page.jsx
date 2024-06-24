@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState} from 'react'
+import { useEffect, useState,Suspense } from 'react'
 import { useSession} from "next-auth/react"
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -53,6 +53,7 @@ const EditNote = () => {
 
     }
     return (
+        <Suspense fallback={<div>Loading...</div>}>
         <Form
         type='Edit'
         note={note}
@@ -60,6 +61,7 @@ const EditNote = () => {
         submitting={submitting}
         handleSubmit={updateNote}
         />
+        </Suspense>
     )
 }
 
