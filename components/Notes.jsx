@@ -43,7 +43,7 @@ const Notes = ({ data, handleEdit, handleTrash, loading }) => {
         <h1 className='head_text'>
            Notes
         </h1>
-        <Link href="/create-note" className="flex gap-2 mb-8 items-center">
+        <Link href="notes/create-note" className="flex gap-2 mb-8 items-center">
                 <Image 
                     src="/assets/icons/add.svg"
                     alt="Logo"

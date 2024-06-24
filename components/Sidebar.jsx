@@ -21,7 +21,7 @@ const Sidebar = () => {
             height={40}
             onClick={() => setOpen(!open)}
           />
-            <Link href="/" className="flex gap-2 items-center absolute left-16">
+            <Link href="/notes" className="flex gap-2 items-center absolute left-16">
                 <Image 
                     src="/assets/images/logo.svg"
                     alt="Logo"
@@ -50,7 +50,7 @@ const Sidebar = () => {
             </Link>
         </li>
         <li>
-          <Link href="/deletednotes" className="flex gap-2 items-center">
+          <Link href="notes/deletednotes" className="flex gap-2 items-center">
                 <Image 
                     src="/assets/icons/trash.svg"
                     alt="Logo"

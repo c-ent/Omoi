@@ -8,7 +8,7 @@ export default function NotesLayout({
   children, // will be a page or nested layout
 }) {
   return (
-    <>
+    <><Provider>
        <Sidebar />
                <div className="w-4/6 px-4 md:px-5 lg:px-5 flex-1 ">
                 <Nav/>
@@ -16,6 +16,7 @@ export default function NotesLayout({
                   {children}
                 </div>
               </div> 
+              </Provider>
     </>
 
   )
