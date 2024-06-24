@@ -8,6 +8,9 @@
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
 
+h1,p,h2,a,button,span,div,textarea {
+  font-family: "Inter", sans-serif;
+}
 .main {
   width: 100vw;
   min-height: 100vh;
@@ -17,6 +20,8 @@
   padding: 120px 24px 160px 24px;
   pointer-events: none;
 }
+
+
 
 .main:before {
   background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);

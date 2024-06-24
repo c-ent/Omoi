@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Provider>
-          <div className="flex">
+          <div>
            {children}
           </div>
        
