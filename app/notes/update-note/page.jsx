@@ -23,10 +23,8 @@ const NoteDetails = ({ noteId, setNote }) => {
     return null;
 };
 
-const EditNote = () => {
+const EditNoteContent = ({ noteId }) => {
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const noteId = searchParams.get('id');
     const { data: session } = useSession();
     const [submitting, setSubmitting] = useState(false);
     const [note, setNote] = useState({ title: "", body: "", bgColor: '' });
@@ -57,8 +55,8 @@ const EditNote = () => {
     };
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            {noteId && <NoteDetails noteId={noteId} setNote={setNote} />}
+        <>
+            <NoteDetails noteId={noteId} setNote={setNote} />
             <Form
                 type='Edit'
                 note={note}
@@ -66,6 +64,17 @@ const EditNote = () => {
                 submitting={submitting}
                 handleSubmit={updateNote}
             />
+        </>
+    );
+};
+
+const EditNote = () => {
+    const searchParams = useSearchParams();
+    const noteId = searchParams.get('id');
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            {noteId && <EditNoteContent noteId={noteId} />}
         </Suspense>
     );
 }
