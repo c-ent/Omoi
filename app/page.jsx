@@ -16,14 +16,17 @@ export default function Page() {
 
   return (
     
-   
-    <div className="flex flex-col items-center justify-center w-screen text-center gap-2">
+    <>
+     <Nav/>
+     <div className="flex flex-col items-center justify-center  text-center gap-2 mt-20 overflow-hidden" >
       <h1 className="text-[62px] text-center font-medium">Simplify Your Thoughts,<br/> Organize Your Ideas.</h1>
-      <p className="max-w-[605px] text-center m-auto text-[#8A8A8A] font-medium mb-2">Omoi, derived from the Japanese word "Omoidasu," which means "to remember," is your ultimate tool for capturing and reflecting on your thoughts</p>
+      <p className="max-w-[605px] text-center  text-[#8A8A8A] font-medium mb-2">Omoi, derived from the Japanese word "Omoidasu," which means "to remember," is your ultimate tool for capturing and reflecting on your thoughts</p>
       <Link href="/notes">
         <ButtonOutlineBlack text="Write"/>
       </Link>
-      <Slider className="mb-[-500px]"/>
+      <Slider className=""/>
     </div>
+    </>
+   
   )
 }

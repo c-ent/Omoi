@@ -29,16 +29,21 @@ const cards = [
 ];
 
 const Slider = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [translateValue, setTranslateValue] = React.useState(0);
+
+
   return (
-    <div className="flex justify-between items-center w-screen gap-5 overflow-hidden">
+    <>
+    <div className="mt-[-150px] flex justify-between items-center w-screen gap-5 overflow-hidden ">
       {cards.map((card, index) => (
         <div
           key={index}
           className={`w-full h-64 flex flex-col justify-center items-center ${card.bgColor} shadow-md transform transition-transform duration-500 rounded-lg p-4 ${
-            index === 0 ? 'mb-[500px]' :
-            index === 1 ? 'mb-[250px]' :
-            index === 3 ? 'mb-[250px]' :
-            index === 4 ? 'mb-[500px]' :
+            index === 0 ? 'mb-[350px]' :
+            index === 1 ? 'mb-[150px]' :
+            index === 3 ? 'mb-[150px]' :
+            index === 4 ? 'mb-[350px]' :
             ''
           }`}
         >
@@ -46,7 +51,11 @@ const Slider = () => {
           <p>{card.content}</p>
         </div>
       ))}
+
+     
     </div>
+    
+
   );
 };
 
