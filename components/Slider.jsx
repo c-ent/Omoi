@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const cards = [
   {
@@ -29,13 +29,17 @@ const cards = [
 ];
 
 const Slider = () => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [translateValue, setTranslateValue] = React.useState(0);
+
+  const [divs, setDivs] = useState(cards);
+
+  const handleNext = () => {
+    setDivs([cards[1], cards[2], cards[0]]);
+  };
 
 
   return (
     <>
-    <div className="mt-[-150px] flex justify-between items-center w-screen gap-5 overflow-hidden ">
+    <div className="mt-[-150px] flex justify-between items-center w-screen gap-5 overflow-hidden -z-50">
       {cards.map((card, index) => (
         <div
           key={index}
@@ -52,9 +56,13 @@ const Slider = () => {
         </div>
       ))}
 
-     
-    </div>
     
+    </div>
+      <button onClick={handleNext} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+      Next
+    </button>
+
+    </>
 
   );
 };

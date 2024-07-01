@@ -3,10 +3,11 @@ import Link from 'next/link';    //To use Link tags
 import Image from 'next/image'; //To optimize images
 import { useState, useEffect } from 'react'; //To use state and effect hooks
 import { signIn, signOut , useSession, getProviders} from 'next-auth/react'; //To use next-auth
+import { usePathname  } from 'next/navigation';
 
 const Nav = () => {
     // const isUserLoggedIn = true;
-
+    const currentPage = usePathname();
     const { data: session,status } = useSession();
 
     const [providers, setProviders] = useState(null);
@@ -36,7 +37,26 @@ const Nav = () => {
         </Link> */}
 
         {/* Desktop Navigation */}
-        <div className="sm:flex hidden">
+      
+        <div className={`
+            ${currentPage === '/' ? 'justify-between' : 'justify-end'} 
+            space-between w-full px-6 sm:flex hidden `
+            }>
+    
+        {currentPage === '/' && (
+            <Link href="/notes" className="flex gap-2 items-center ">
+            <Image 
+                src="/assets/images/logo.svg"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+            />
+            <p className="font-bold text-[32px]">Omoi</p>
+            </Link>
+        )}
+    
+           
             {session?.user ? (
                 <div className="flex gap-3 md:gap-5">
                     {/* <Link href="create-note" className="black_btn" >
