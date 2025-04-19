@@ -42,7 +42,8 @@ const Nav = () => {
             </Link>
         )}
     
-            {session?.user ? (
+            {/* Only show auth buttons if NOT on home page */}
+            {currentPage !== '/' && session?.user ? (
                 <div className="flex gap-3 md:gap-5">
                     <button type="button" onClick={signOut} className="outline_btn">
                         Sign Out
@@ -58,7 +59,7 @@ const Nav = () => {
                         />
                     </Link>
                 </div>
-            ): (
+            ): currentPage !== '/' && (
                 <>
                     {providers &&
                     Object.values(providers).map((provider)=>(
@@ -78,7 +79,8 @@ const Nav = () => {
 
         {/* Mobile Navigation */}
         <div className="sm:hidden flex relative">
-            {session?.user ? (
+            {/* Only show auth components if NOT on home page */}
+            {currentPage !== '/' && session?.user ? (
                 <div className="flex">
                     <Image 
                             src={session?.user.image}
@@ -94,15 +96,15 @@ const Nav = () => {
                                 <button type="button" onClick={()=> {
                                     setToggleDropdown(false);
                                     signOut();
-                                    className="mt-5 w-full black_btn"
                                 }}
+                                className="mt-5 w-full black_btn"
                                 >
                                     Sign Out
                                 </button>
                             </div>
                         )}
                 </div>
-            ): (
+            ): currentPage !== '/' && (
                 <>
                 {providers &&
                     Object.values(providers).map((provider)=>(
