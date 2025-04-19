@@ -1,5 +1,5 @@
 {
-  "name": "Omoi",
+  "name": "omoi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "mongodb": "^6.2.0",
     "mongoose": "^7.6.3",
     "next": "^15.3.1",
-    "next-auth": "^4.24.3",
+    "next-auth": "^5.0.0-beta.13",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
