@@ -1,11 +1,9 @@
 import ButtonOutlineBlack from "@components/buttons/ButtonOutlineBlack"
 import Nav from "@components/Nav"
 import Slider from "@components/Slider"
-import { useSession, getSession } from "next-auth/react"
 import Link from "next/link"
 
 export default function Page() {
-  const { data: session, status } = useSession()
   return (
     <>
       <Nav/>
