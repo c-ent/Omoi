@@ -19,7 +19,7 @@ const CreateNote = () => {
     }
 
     const storeNote = async (e) => {
-        e.preventDefault(); // prevent default form submit reload
+        e.preventDefault();
         setSubmitting(true);
         router.refresh();
         try {
@@ -30,11 +30,11 @@ const CreateNote = () => {
                     noteTitle:note.title,
                     noteBody:note.body,
                     bgColor:note.bgColor,
-                    isShown: 1, // Set isShown to 1 to show the note
+                    isShown: 1, 
                 })
             })
             if(response.ok){
-                router.push('/');
+                router.push('/notes');
             } else {
                 console.log(response)
             }

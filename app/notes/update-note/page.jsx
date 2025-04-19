@@ -30,7 +30,7 @@ const EditNoteContent = ({ noteId }) => {
     const [note, setNote] = useState({ title: "", body: "", bgColor: '' });
 
     const updateNote = async (e) => {
-        e.preventDefault(); // prevent default form submit reload
+        e.preventDefault(); 
         setSubmitting(true);
         if (!noteId) return alert("Note ID is missing");
 
@@ -45,7 +45,7 @@ const EditNoteContent = ({ noteId }) => {
             });
 
             if (response.ok) {
-                router.push('/');
+                router.push('/notes');
             }
         } catch (error) {
             console.log(error);
