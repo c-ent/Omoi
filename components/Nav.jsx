@@ -1,12 +1,11 @@
 "use client";
-import Link from 'next/link';    //To use Link tags
-import Image from 'next/image'; //To optimize images
-import { useState, useEffect } from 'react'; //To use state and effect hooks
-import { signIn, signOut , useSession, getProviders} from 'next-auth/react'; //To use next-auth
+import Link from 'next/link'; 
+import Image from 'next/image'; 
+import { useState, useEffect } from 'react'; 
+import { signIn, signOut , useSession, getProviders} from 'next-auth/react';
 import { usePathname  } from 'next/navigation';
 
 const Nav = () => {
-    // const isUserLoggedIn = true;
     const currentPage = usePathname();
     const { data: session,status } = useSession();
 
@@ -24,20 +23,7 @@ const Nav = () => {
 
     return (
     <nav className="flex-end w-full mb-6 pt-5 h-fit ">
-        {/* Logo */}
-        {/* <Link href="/" className="flex gap-2 flex-center">
-            <Image 
-                src="/assets/icons/note.svg"
-                alt="Logo"
-                width={30}
-                height={30}
-                className="object-contain"
-            />
-            <p className="logo_text">Notes</p>
-        </Link> */}
-
         {/* Desktop Navigation */}
-      
         <div className={`
             ${currentPage === '/' ? 'justify-between' : 'justify-end'} 
             space-between w-full px-6 sm:flex hidden `
@@ -56,13 +42,8 @@ const Nav = () => {
             </Link>
         )}
     
-           
             {session?.user ? (
                 <div className="flex gap-3 md:gap-5">
-                    {/* <Link href="create-note" className="black_btn" >
-                        Create Note
-                    </Link> */}
-
                     <button type="button" onClick={signOut} className="outline_btn">
                         Sign Out
                     </button>
