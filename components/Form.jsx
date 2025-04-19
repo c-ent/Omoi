@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const Form = ({ note, setNote,  handleSubmit }) => {
+const Form = ({ type, note, setNote, handleSubmit, submitting }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState('bg-yellow-200');
 
@@ -62,8 +62,9 @@ const Form = ({ note, setNote,  handleSubmit }) => {
               )}
         </div>
         <div className='flex-end mx-3 mb-5 gap-4'>
+
           <button type='submit' className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'>
-            Create
+            {submitting ? `${type}ing...` : type}
           </button>
         </div>
       </form>
