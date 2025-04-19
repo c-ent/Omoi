@@ -6,22 +6,15 @@ import { useState, useEffect } from 'react';
 import Notes from "@components/Notes";
 import Image from 'next/image';
 
-const NotesClient = ({ initialNotes }) => {
+const NotesClient = ({ initialNotes, initialProviders }) => {
   const router = useRouter();
   const { status } = useSession();
   const [notes, setNotes] = useState(initialNotes || []);
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState(initialProviders || null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Update notes when props change
     setNotes(initialNotes);
-    
-    const setUpProviders = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    }
-    setUpProviders();
   }, [initialNotes]);
 
   const handleEdit = (note) => {
