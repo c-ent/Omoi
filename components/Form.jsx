@@ -63,9 +63,11 @@ const Form = ({ type, note, setNote, handleSubmit, submitting }) => {
         </div>
         <div className='flex-end mx-3 mb-5 gap-4'>
 
-          <button type='submit' className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'>
-            {submitting ? `${type}ing...` : type}
-          </button>
+        <button type='submit' className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'>
+          {submitting 
+            ? `${type === 'Create' ? 'Creating' : 'Updating'}...` 
+            : type === 'Create' ? 'Create' : 'Update'}
+        </button>
         </div>
       </form>
     </section>

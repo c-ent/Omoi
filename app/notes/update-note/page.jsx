@@ -58,7 +58,7 @@ const EditNoteContent = ({ noteId }) => {
         <>
             <NoteDetails noteId={noteId} setNote={setNote} />
             <Form
-                type='Edit'
+                type='Update'
                 note={note}
                 setNote={setNote}
                 submitting={submitting}

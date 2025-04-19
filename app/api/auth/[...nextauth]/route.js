@@ -43,5 +43,36 @@
         
     })
 
+    export const authOptions = {
+      providers: [
+          GoogleProvider({
+              clientId: process.env.GOOGLE_ID,
+              clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          })
+      ],
+      callbacks: {
+          async session({ session }) {
+              try {
+                  await connectToDB();
+                  
+                  const sessionUser = await User.findOne({ email: session.user.email });
+                  
+                  if (!sessionUser) {
+                      console.error("User not found in database:", session.user.email);
+                      return session;
+                  }
+                  
+                  session.user.id = sessionUser._id.toString();
+                  
+                  return session;
+              } catch (error) {
+                  console.error("Error in session callback:", error);
+                  return session;
+              }
+          }
+      }
+  };
+
+  
     //export
     export  { handler as GET, handler as POST};

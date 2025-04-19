@@ -1,128 +1,35 @@
-"use client"
-import { useState, useEffect} from 'react';
-import { signIn , useSession, getProviders} from 'next-auth/react'; //To use next-auth
-import { useRouter } from 'next/navigation';
-import Notes from "@components/Notes";
-import Image from 'next/image';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@app/api/auth/[...nextauth]/route";
+import NotesClient from '@components/NotesClient';
 
-const MyNotes = () => {
-    const router = useRouter();
-    const { data: session,status } = useSession();
-    const [ notes, setNotes ] = useState([])
-    const [providers, setProviders] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchNotes = async () => {
-          const response = await fetch(`/api/users/${session?.user.id}/notes`);
-          const data = await response.json();
-          const filteredNotes = data.filter(note => note.isShown === 1);
-          setNotes(filteredNotes);
-          setLoading(false);
-        };
-        
-        if (session?.user.id) fetchNotes();
-
-        const setUpProviders = async () => {
-        const response = await getProviders();
-        setProviders(response);
-      }
-      setUpProviders();
-      }, [session?.user.id]);
-    
-    const handleEdit = (note) => {
-        router.push(`notes/update-note?id=${note._id}`)
-    }
-
-    const handleTrash = async (note) => {
-          // console.log(note)
-          try {
-              await fetch(`/api/note/${note._id}`, {
-              method: "PATCH",
-              body: JSON.stringify({
-                      noteTitle:note.noteTitle,
-                      noteBody:note.noteBody,
-                      bgColor:note.bgColor,
-                      isShown: 0,
-              })
-          })
-          setNotes((prevNotes) => {
-            // Filter out the notes with the specified note._id
-            const filteredNotes = prevNotes.filter((item) => item._id !== note._id);
-            return filteredNotes;
-          });
-        } catch (error) {
-          console.log(error);
-        }
-    };
-
-      if (status === "loading") {
-        return <div className="flex items-center justify-center pt-24 w-full h-full">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full animate-pulse bg-yellow-300"></div>
-                    <div className="w-3 h-3 rounded-full animate-pulse bg-yellow-300"></div>
-                    <div className="w-3 h-3 rounded-full animate-pulse bg-yellow-300"></div>
-                  </div>
-                </div>
-      }
-
-      if (status === "unauthenticated") {
-        return <div className="flex flex-col items-center pt-20 min-h-screen" 
-        style={{
-          position: 'relative'}}
-        >
-          <div
-           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'url(/assets/images/app.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            backgroundRepeat: 'no-repeat',
-            filter: 'blur(15px)',
-            zIndex: -1
-        }}
-          
-          >
-             </div>
-             <div className='bg-yellow-200'>
-             <Image 
-            src="/assets/images/blob.svg"
-            alt="Logo"
-            width={40}
-            height={40}
-            className="object-contain"
-        />
-             </div>
+const MyNotes = async () => {
+  // Get session server-side using getServerSession instead of useSession hook
+  const session = await getServerSession(authOptions);
+  let notes = [];
+  
+  console.log(`Session data: ${JSON.stringify(session)}`);
+  console.log(`Session user ID: ${session?.user?.id}`);
+  // Fetch notes on server if user is logged in
+  if (session?.user?.id) {
+    try {
+      console.log(`Fetching notes for user ${session.user.id}`);
+      const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${session.user.id}/notes`, {
+        cache: 'no-store'
+      });
       
-        {providers &&
-            Object.values(providers).map((provider)=>(
-                <button
-                    type="button"
-                    key={provider.name}
-                    onClick={() => signIn(provider.id)}
-                    className="font-semibold"
-                >
-                    Sign in to add Notes
-                </button>
-            ))}
-           
-    </div>
-    
+      console.log(`Response status: ${response.status}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        notes = data.filter(note => note.isShown === 1);
       }
-    return (
-        <Notes
-          data={notes}
-          handleEdit={handleEdit}
-          handleTrash={handleTrash}
-          setLoading={setLoading}
-          loading={loading}
-        />
-      );
-    };
+    } catch (error) {
+      console.error('Failed to fetch notes:', error);
+    }
+  }
 
-export default MyNotes
+  // Pass the pre-fetched notes to client component
+  return <NotesClient initialNotes={notes} />;
+};
 
+export default MyNotes;
