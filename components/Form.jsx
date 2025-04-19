@@ -13,7 +13,6 @@ const Form = ({ note, setNote,  handleSubmit }) => {
   const handleColorSelect = (color) => {
     setSelectedColor(color);
     setNote({ ...note, bgColor: color })
-    console.log(note.bgColor)
     setIsMenuOpen(false);
   };
 
