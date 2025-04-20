@@ -26,7 +26,7 @@ const Nav = () => {
         {/* Desktop Navigation */}
         <div className={`
             ${currentPage === '/' ? 'justify-between' : 'justify-end'} 
-            space-between w-full px-6 sm:flex hidden `
+            space-between w-full px-6 flex  `
             }>
     
         {currentPage === '/' && (
