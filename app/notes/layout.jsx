@@ -10,23 +10,10 @@ export default function NotesLayout({
   return (
     <>
               <Provider>
-
-               {/* <div className="w-4/6 px-4 md:px-5 lg:px-5 flex-1 ">
-               <Sidebar />
-                <Nav/>
-                <div className="mx-auto">
-                  
-                  {children}
-                </div>
-              </div>  */}
-              
               <div className='w-full px-4 md:px-5 lg:px-5 flex'>
-                
                 <div className='w-[10%]'>
                   <Sidebar />
-                  
                 </div>
-             
                 <div className="mx-auto w-[90%]">  
                 <Nav/>
                   {children}

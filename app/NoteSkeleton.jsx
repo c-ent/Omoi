@@ -12,6 +12,7 @@ const NoteCardSkeleton = () => (
 </div>
 );
 
+
 const NoteSkeleton = () => {
   return (
     <div className='notes_layout'>
