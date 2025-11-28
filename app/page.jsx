@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from 'next/image';
 export default function Page() {
   return (
-    <>
+    <div>
       <Nav/>
       <div id="home" className="flex flex-col items-center justify-center  text-center p-6 gap-2 mt-20 overflow-hidden" >
         <h1 className="text-[28px] md:text-[62px] text-center font-bold">Simplify Your Thoughts,<br/> Organize Your Ideas.</h1>
@@ -34,6 +34,6 @@ export default function Page() {
         <h1 className='font-bold text-lg'>Omoi</h1>
         <p>© 2024</p>
     </div>
-    </>
+    </div>
   )
 }

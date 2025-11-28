@@ -18,7 +18,7 @@ const Form = ({ type, note, setNote, handleSubmit, submitting }) => {
 
   return (
 
-    <section className='w-full max-w-full flex-start flex-col'>
+    <section className='w-full max-w-[500px] mx-auto flex-start flex-col'>
       <form onSubmit={handleSubmit} className={`note_card ${note.bgColor ? note.bgColor : selectedColor} `}>
         <textarea  rows="2" className="my-2 font-satoshi note_heading"
           value={note.title}
