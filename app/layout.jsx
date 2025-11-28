@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Provider>
-          <div className='max-w-screen-2xl mx-auto ml-[50px] md:mx-auto'>
+          <div className='max-w-screen-2xl mx-auto'>
             {children}
           </div>
         </Provider>

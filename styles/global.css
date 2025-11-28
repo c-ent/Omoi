@@ -83,11 +83,11 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .black_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-3 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+  @apply rounded-full border border-black bg-black py-1.5 px-3 text-white transition-all hover:bg-white hover:text-black text-center text-[13px] md:text-sm font-inter flex items-center justify-center;
 }
 
 .outline_btn {
-  @apply rounded-full border text-sm border-black bg-transparent px-2 text-black transition-all hover:bg-black hover:text-white text-center  font-inter flex items-center justify-center;
+  @apply rounded-full border text-[13px] md:text-sm border-black bg-transparent px-2 text-black transition-all hover:bg-black hover:text-white text-center  font-inter flex items-center justify-center;
 }
 
 .head_text {
@@ -145,7 +145,7 @@ grid grid-cols-3 gap-4 */
 
 /* Nav Component */
 .logo_text {
-  @apply  font-inter font-bold text-3xl text-black tracking-wide;
+  @apply  font-inter font-bold text-2xl md:text-3xl text-black tracking-wide;
 }
 
 .sidebar_text{

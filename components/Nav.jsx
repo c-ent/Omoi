@@ -22,27 +22,20 @@ const Nav = () => {
     },[])
 
     return (
-    <nav className="flex-end w-full mb-6 pt-5 h-fit ">
+    <nav className={`justify-between flex w-full mb-6 pt-5 ${currentPage === '/' ? 'px-6' : ''}` }>
+        <Link href="/notes" className="flex gap-2 items-center ">
+            <Image 
+                src="/assets/images/logo.svg"
+                alt="Logo"
+                width={30}
+                height={30}
+                className="object-contain"
+            />
+            <p className="logo_text">Omoi</p>
+        </Link>
+        <div>
 
-            <Link href="/notes" className="flex gap-2 items-center ">
-                <Image 
-                    src="/assets/images/logo.svg"
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                />
-                <p className="logo_text">Omoi</p>
-            </Link>
-        {/* Desktop Navigation */}
-        <div className={`
-            ${currentPage === '/' ? 'justify-between' : 'justify-end'} 
-            space-between w-full px-6 flex  `
-            }>
-    
-    
-            {/* Only show auth buttons if NOT on home page */}
-            {currentPage !== '/' && session?.user ? (
+            {session?.user ? (
                 <div className="flex gap-3 md:gap-5">
                     <button type="button" onClick={signOut} className="outline_btn">
                         Sign Out
@@ -58,7 +51,7 @@ const Nav = () => {
                         />
                     </Link>
                 </div>
-            ): currentPage !== '/' && (
+            ): (
                 <>
                     {providers &&
                     Object.values(providers).map((provider)=>(
@@ -75,50 +68,6 @@ const Nav = () => {
             )}
         </div>
 
-
-        {/* Mobile Navigation */}
-        <div className="sm:hidden flex relative">
-            {/* Only show auth components if NOT on home page */}
-            {currentPage !== '/' && session?.user ? (
-                <div className="flex">
-                    <Image 
-                            src={session?.user.image}
-                            width={37}
-                            height={37}
-                            className="rounded-full"
-                            alt="profile"
-                            onClick={() => setToggleDropdown(!toggleDropdown)}
-                        />
-
-                        { toggleDropdown && (
-                            <div className="dropdown">
-                                <button type="button" onClick={()=> {
-                                    setToggleDropdown(false);
-                                    signOut();
-                                }}
-                                className="mt-5 w-full black_btn"
-                                >
-                                    Sign Out
-                                </button>
-                            </div>
-                        )}
-                </div>
-            ): currentPage !== '/' && (
-                <>
-                {providers &&
-                    Object.values(providers).map((provider)=>(
-                        <button
-                            type="button"
-                            key="provider.name"
-                            onClick = {() => signIn(provider.id)}
-                            className= "black_btn"
-                        >
-                            Sign in
-                        </button>
-                    ))}
-                </>
-            )}
-        </div> 
     </nav>
 )
 }
