@@ -14,7 +14,7 @@ export default function NotesLayout({
         <div className="fixed inset-y-0 left-0 z-30 md:static md:z-auto">
           <Sidebar />
         </div>
-        <div className="flex-1 mx-auto md:w-[90%] md:ml-0 ml-0 md:pl-0 pl-0">
+        <div className="flex-1 mx-auto ml-[50px] md:w-[90%] md:ml-0 md:pl-0 pl-0">
           <Nav />
           {children}
         </div>
