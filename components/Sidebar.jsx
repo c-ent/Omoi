@@ -1,18 +1,41 @@
 "use client"
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    let timer;
+    if (open) {
+      timer = setTimeout(() => setShowText(true), 300);
+      const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+          setOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    } else {
+      setShowText(false);
+    }
+  }, [open]);
+
   return (
     <div
+      ref={sidebarRef}
       className={`
         h-screen flex flex-col bg-white
         py-6
         transition-all duration-300 px-4
-        ${open ? 'w-44 md:w-34' : 'w-16 md:w-20'}
+        ${open ? 'w-32 md:w-30' : 'w-16 md:w-20'}
       `}
     >
       <ul>
@@ -36,7 +59,7 @@ const Sidebar = () => {
                 height={30}
                 className="object-contain"
               />
-              {open && (
+              {showText && (
                 <p className="sidebar_text transition-opacity duration-300 opacity-100">
                   Notes
                 </p>
@@ -52,7 +75,7 @@ const Sidebar = () => {
                 height={30}
                 className="object-contain"
               />
-              {open && (
+              {showText && (
                 <p className="sidebar_text transition-opacity duration-300 opacity-100">
                   Trash
                 </p>
