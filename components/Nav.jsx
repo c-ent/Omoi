@@ -23,24 +23,23 @@ const Nav = () => {
 
     return (
     <nav className="flex-end w-full mb-6 pt-5 h-fit ">
+
+            <Link href="/notes" className="flex gap-2 items-center ">
+                <Image 
+                    src="/assets/images/logo.svg"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                />
+                <p className="logo_text">Omoi</p>
+            </Link>
         {/* Desktop Navigation */}
         <div className={`
             ${currentPage === '/' ? 'justify-between' : 'justify-end'} 
             space-between w-full px-6 flex  `
             }>
     
-        {currentPage === '/' && (
-            <Link href="/notes" className="flex gap-2 items-center ">
-            <Image 
-                src="/assets/images/logo.svg"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="object-contain"
-            />
-            <p className="font-bold text-[32px]">Omoi</p>
-            </Link>
-        )}
     
             {/* Only show auth buttons if NOT on home page */}
             {currentPage !== '/' && session?.user ? (
