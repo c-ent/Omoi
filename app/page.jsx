@@ -32,7 +32,7 @@ export default function Page() {
 
       <div className='flex items-center justify-between border-t border-black dark:border-gray-800 pace-between w-full px-6  '>
         <h1 className='font-bold text-lg'>Omoi</h1>
-        <p>© 2024</p>
+        <p>© {new Date().getFullYear()}</p>
     </div>
     </div>
   )
