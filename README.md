@@ -1,22 +1,124 @@
-<h1>Omoi</h1>
+# Omoi
 
-![image](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/web.PNG)
+![Omoi App Screenshot](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/web.PNG)
 
-Omoi is an open-source note tool for storing and managing notes effortlessly.
+**Omoi** (思い出す - "to remember" in Japanese) is a simple, open-source note-taking app built with Next.js.
 
-Features
-Intuitive Interface: A user-friendly design for seamless note-taking and organization.
-Open Source: Omoi is built on the principles of transparency and collaboration.
-Versatile Note Management: Organize your thoughts, ideas, and tasks with ease.
-Secure: Your data is your own. Omoi ensures the privacy and security of your notes.
+## Features
 
-### Built With
+- Clean interface for taking notes quickly
+- User authentication with NextAuth.js
+- Create, edit, update, and delete notes
+- Color-code your notes (yellow, red, blue, green)
+- Trash functionality - delete notes and restore them later
+- Fully responsive design
+- Built with Next.js 15 and MongoDB
+- Each user has their own private notes
+
+## Tech Stack
 
 * [![React][React.js]][React-url]
 * [![Next][Next.js]][Next-url]
 * ![MongoDB]
 * ![Tailwind]
 * ![NextAuth]
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB database (local or cloud instance)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/c-ent/Omoi.git
+   cd Omoi
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your_nextauth_secret
+   GOOGLE_ID=your_google_oauth_id
+   GOOGLE_CLIENT_SECRET=your_google_oauth_secret
+   ```
+
+4. Run the development server
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Project Structure
+
+```
+Omoi/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   ├── auth/          # NextAuth authentication
+│   │   ├── note/          # Note CRUD operations
+│   │   └── users/         # User-specific operations
+│   ├── notes/             # Notes pages
+│   │   ├── create-note/   # Create note page
+│   │   ├── deletednotes/  # Deleted notes page
+│   │   └── update-note/   # Update note page
+│   └── page.jsx           # Landing page
+├── components/            # React components
+│   ├── buttons/           # Button components
+│   ├── Form.jsx           # Note form component
+│   ├── Nav.jsx            # Navigation bar
+│   ├── NoteCard.jsx       # Individual note card
+│   ├── Notes.jsx          # Notes list component
+│   ├── NotesClient.jsx    # Client-side notes handler
+│   └── Sidebar.jsx        # Sidebar component
+├── models/                # Mongoose models
+│   ├── notes.js           # Note schema
+│   └── user.js            # User schema
+├── styles/                # Global styles
+├── utils/                 # Utility functions
+│   └── database.js        # Database connection
+└── public/                # Static assets
+```
+
+## How It Works
+
+### Note Management
+- **Create** - Add notes with titles, body text, and colors
+- **Edit** - Update your notes anytime
+- **Delete** - Move notes to trash (can be restored)
+- **Restore** - Get notes back from trash
+- **Permanent Delete** - Remove notes completely
+
+### Color Options
+Choose from four colors for your notes:
+- Yellow (default)
+- Red
+- Blue
+- Green
+
+### Authentication
+Login with Google or credentials via NextAuth.js
+
+## Contributing
+
+Contributions are welcome! Feel free to report bugs, suggest features, or submit pull requests.
+
+## License
+
+Open source - free to use and modify.
 
 <!-- ![image](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/mobile.PNG) -->
 
