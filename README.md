@@ -1,145 +1,117 @@
-# Omoi
-
-![Omoi App Screenshot](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/web.PNG)
+# Omoi 📝
 
 **Omoi** (思い出す - "to remember" in Japanese) is a simple, open-source note-taking app built with Next.js.
 
+![Omoi App Screenshot](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/web.PNG)
+
 ## Features
 
-- Clean interface for taking notes quickly
-- User authentication with NextAuth.js
-- Create, edit, update, and delete notes
-- Color-code your notes (yellow, red, blue, green)
-- Trash functionality - delete notes and restore them later
-- Fully responsive design
-- Built with Next.js 15 and MongoDB
-- Each user has their own private notes
+- **Clean Interface**: Simple, distraction-free note-taking experience
+- **User Authentication**: Secure login with Google OAuth via NextAuth.js
+- **Full CRUD Operations**: Create, read, update, and delete notes
+- **Color Coding**: Organize notes with four color options (yellow, red, blue, green)
+- **Trash Functionality**: Delete notes and restore them later
+- **Private Notes**: Each user has their own secure, private note collection
+- **Responsive Design**: Works seamlessly on all devices
 
 ## Tech Stack
 
-* [![React][React.js]][React-url]
-* [![Next][Next.js]][Next-url]
-* ![MongoDB]
-* ![Tailwind]
-* ![NextAuth]
+- **Frontend**: Next.js 15, React, Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB with Mongoose
+- **Authentication**: NextAuth.js with Google Provider
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- MongoDB database (local or cloud instance)
+- MongoDB database (local or MongoDB Atlas)
+- Google OAuth credentials
 - npm or yarn package manager
 
 ### Installation
 
-1. Clone the repository
-   ```bash
-   git clone https://github.com/c-ent/Omoi.git
-   cd Omoi
-   ```
+1. Clone the repository:
+```bash
+git clone https://github.com/c-ent/Omoi.git
+cd Omoi
+```
 
-2. Install dependencies
-   ```bash
-   npm install
-   ```
+2. Install dependencies:
+```bash
+npm install
+```
 
-3. Set up environment variables
-   
-   Create a `.env.local` file in the root directory:
-   ```env
-   MONGODB_URI=your_mongodb_connection_string
-   NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=your_nextauth_secret
-   GOOGLE_ID=your_google_oauth_id
-   GOOGLE_CLIENT_SECRET=your_google_oauth_secret
-   ```
+3. Set up environment variables:
 
-4. Run the development server
-   ```bash
-   npm run dev
-   ```
+Create a `.env.local` file in the root directory:
+```env
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+GOOGLE_ID=your_google_oauth_id
+GOOGLE_CLIENT_SECRET=your_google_oauth_secret
+```
+
+4. Run the development server:
+```bash
+npm run dev
+```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
 ## Project Structure
 
 ```
-Omoi/
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   │   ├── auth/          # NextAuth authentication
-│   │   ├── note/          # Note CRUD operations
-│   │   └── users/         # User-specific operations
-│   ├── notes/             # Notes pages
-│   │   ├── create-note/   # Create note page
-│   │   ├── deletednotes/  # Deleted notes page
-│   │   └── update-note/   # Update note page
+omoi/
+├── app/                   # Next.js App Router
+│   ├── api/               # API routes (auth, notes, users)
+│   ├── notes/             # Note pages (create, update, deleted)
 │   └── page.jsx           # Landing page
 ├── components/            # React components
-│   ├── buttons/           # Button components
-│   ├── Form.jsx           # Note form component
-│   ├── Nav.jsx            # Navigation bar
-│   ├── NoteCard.jsx       # Individual note card
-│   ├── Notes.jsx          # Notes list component
-│   ├── NotesClient.jsx    # Client-side notes handler
-│   └── Sidebar.jsx        # Sidebar component
-├── models/                # Mongoose models
-│   ├── notes.js           # Note schema
-│   └── user.js            # User schema
+├── models/                # Mongoose schemas (notes, user)
 ├── styles/                # Global styles
-├── utils/                 # Utility functions
-│   └── database.js        # Database connection
-└── public/                # Static assets
+├── utils/                 # Database connection and utilities
+└── public/
+    └── assets/            # Icons and images
 ```
 
 ## How It Works
 
-### Note Management
-- **Create** - Add notes with titles, body text, and colors
-- **Edit** - Update your notes anytime
-- **Delete** - Move notes to trash (can be restored)
-- **Restore** - Get notes back from trash
-- **Permanent Delete** - Remove notes completely
+**Note Management:**
+- Create notes with titles, body text, and colors
+- Edit your notes anytime
+- Delete notes (moves to trash)
+- Restore notes from trash
+- Permanently delete notes from trash
 
-### Color Options
-Choose from four colors for your notes:
+**Color Options:**
 - Yellow (default)
 - Red
 - Blue
 - Green
 
-### Authentication
-Login with Google or credentials via NextAuth.js
+**Authentication:**
+- Sign in with Google OAuth
+- Each user has private, secure note storage
 
 ## Contributing
 
-Contributions are welcome! Feel free to report bugs, suggest features, or submit pull requests.
+Contributions are welcome! Feel free to:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-Open source - free to use and modify.
-
-<!-- ![image](https://github.com/c-ent/NotesNextJS/blob/16f6ee06573aac98c388c443ec01ae2db7f1b145/public/assets/images/mobile.PNG) -->
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-
-[MongoDB]: https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white
-[Tailwind]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+This project is open source and available under the MIT License - see the `LICENSE` file for details.
