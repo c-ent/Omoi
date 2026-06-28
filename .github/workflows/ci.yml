@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+        env:
+          MONGODB_URI: mongodb://localhost:27017/omoi
+          NEXTAUTH_URL: http://localhost:3000
+          NEXTAUTH_SECRET: ci-build-secret
+          GOOGLE_ID: ci-google-id
+          GOOGLE_CLIENT_SECRET: ci-google-secret

@@ -4,204 +4,243 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
-*/
-
 h1,p,h2,a,button,span,div,textarea {
   font-family: "Inter", sans-serif;
-}
-.main {
-  width: 100vw;
-  min-height: 100vh;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  padding: 120px 24px 160px 24px;
-  pointer-events: none;
-}
-
-
-
-.main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
-  position: absolute;
-  content: "";
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  top: 0;
-}
-
-.main:after {
-  content: "";
-  background-image: url("/assets/images/grid.svg");
-  z-index: 1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  opacity: 0.4;
-  filter: invert(1);
-}
-
-.gradient {
-  height: fit-content;
-  z-index: 3;
-  width: 100%;
-  max-width: 640px;
-  background-image: radial-gradient(
-      at 27% 37%,
-      hsla(215, 98%, 61%, 1) 0px,
-      transparent 0%
-    ),
-    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  filter: blur(100px) saturate(150%);
-  top: 80px;
-  opacity: 0.15;
-}
-
-@media screen and (max-width: 640px) {
-  .main {
-    padding: 0;
-  }
 }
 
 /* Tailwind Styles */
 
-.app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-4 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center gap-2;
 }
 
-.black_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-3 text-white transition-all hover:bg-white hover:text-black text-center text-[13px] md:text-sm font-inter flex items-center justify-center;
+.danger_btn {
+  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-4 text-white transition-all hover:bg-white hover:text-red-600 text-center text-sm font-inter flex items-center justify-center gap-2;
+}
+
+.error_banner {
+  @apply mb-4 flex items-start justify-between gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800;
+}
+
+.error_banner_text {
+  @apply flex-1;
+}
+
+.error_banner_dismiss {
+  @apply shrink-0 text-lg leading-none text-red-600 hover:text-red-800;
 }
 
 .outline_btn {
-  @apply rounded-full border text-[13px] md:text-sm border-black bg-transparent px-2 text-black transition-all hover:bg-black hover:text-white text-center  font-inter flex items-center justify-center;
-}
-
-.head_text {
-  @apply mt-5 font-inter text-4xl font-semibold leading-[1] text-black sm:text-5xl;
-}
-
-
-.orange_gradient {
-  @apply bg-gradient-to-r from-blue-700 via-blue-500 to-blue-700 bg-clip-text text-transparent;
-}
-
-.green_gradient {
-  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
-}
-
-.blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
-}
-
-.desc {
-  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
-}
-
-.search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
-}
-
-.copy_btn {
-  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
-}
-
-.glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+  @apply rounded-full border text-sm border-black bg-transparent px-3 py-1.5 text-black transition-all hover:bg-black hover:text-white text-center font-inter flex items-center justify-center;
 }
 
 .notes_layout {
-  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
-}
-/* @apply grid py-8 sm:gap-6 md:grid-cols-2 xl:grid-cols-3;
-grid grid-cols-3 gap-4 */
-
-/* Feed Component */
-.feed {
-  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+  @apply grid gap-4 py-2 sm:grid-cols-2 xl:grid-cols-3;
 }
 
-/* Form Component */
-.form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+/* Notes app shell */
+.notes_shell {
+  @apply flex min-h-screen bg-neutral-50;
 }
 
-.form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+.notes_main {
+  @apply flex-1 min-w-0 md:pl-0;
 }
 
-/* Nav Component */
+.notes_main_inner {
+  @apply mx-auto max-w-6xl px-4 pb-8 pt-16 sm:px-6 sm:py-8 sm:pt-8 lg:px-8;
+}
+
+.notes_mobile_topbar {
+  @apply pointer-events-none fixed inset-x-0 top-0 z-40 h-16 bg-transparent transition-all duration-200 md:hidden;
+}
+
+.notes_shell_scrolled .notes_mobile_topbar {
+  @apply border-b border-neutral-200/80 bg-white/95 shadow-sm backdrop-blur-md;
+}
+
+.notes_shell_scrolled .sidebar_mobile_toggle {
+  @apply border-neutral-200 bg-white shadow-md;
+}
+
+.notes_shell_scrolled .notes_create_btn_mobile {
+  @apply shadow-md;
+}
+
+/* Sidebar */
+.sidebar_mobile_toggle {
+  @apply fixed top-4 left-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm;
+}
+
+.sidebar_overlay {
+  @apply fixed inset-0 z-40 bg-black/20 backdrop-blur-sm;
+}
+
+.sidebar {
+  @apply fixed top-0 left-0 z-40 flex h-screen w-64 -translate-x-full flex-col border-r border-neutral-200 bg-white transition-transform duration-300 md:sticky md:translate-x-0;
+}
+
+.sidebar_expanded {
+  @apply translate-x-0;
+}
+
+.sidebar_inner {
+  @apply flex h-full flex-col px-4 py-6;
+}
+
+.sidebar_brand {
+  @apply mb-8 flex items-center gap-3 px-2;
+}
+
+.sidebar_brand_text {
+  @apply font-inter text-xl font-bold tracking-tight text-black;
+}
+
+.sidebar_nav {
+  @apply flex flex-col gap-1;
+}
+
+.sidebar_link {
+  @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-black;
+}
+
+.sidebar_link_active {
+  @apply bg-neutral-100 font-medium text-black;
+}
+
+.sidebar_link_label {
+  @apply text-sm font-medium;
+}
+
+.sidebar_create_btn {
+  @apply mt-6 flex items-center justify-center gap-2 rounded-full bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-neutral-800;
+}
+
+.sidebar_create_icon {
+  @apply flex h-5 w-5 items-center justify-center text-lg font-light leading-none;
+}
+
+.sidebar_create_label {
+  @apply font-inter;
+}
+
+.sidebar_footer {
+  @apply mt-auto border-t border-neutral-100 pt-4;
+}
+
+.sidebar_user {
+  @apply mb-3 flex items-center gap-3 px-1;
+}
+
+.sidebar_user_info {
+  @apply min-w-0 flex-1;
+}
+
+.sidebar_user_name {
+  @apply truncate text-sm font-medium text-black;
+}
+
+.sidebar_user_email {
+  @apply truncate text-xs text-neutral-500;
+}
+
+.sidebar_signout {
+  @apply w-full rounded-lg px-2 py-2 text-left text-sm text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-black;
+}
+
+/* Notes page */
+.notes_page_header {
+  @apply mb-6 flex flex-wrap items-start justify-between gap-4;
+}
+
+.notes_page_title {
+  @apply text-3xl font-bold tracking-tight text-black sm:text-4xl;
+}
+
+.notes_page_subtitle {
+  @apply mt-1 text-sm text-neutral-500;
+}
+
+.notes_create_btn {
+  @apply inline-flex items-center gap-2 rounded-full border border-black bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black;
+}
+
+.notes_create_btn_mobile {
+  @apply max-md:fixed max-md:right-4 max-md:top-4 max-md:z-50 max-md:h-10 max-md:px-3 max-md:py-0 max-md:shadow-sm;
+}
+
+.notes_create_label {
+  @apply max-md:text-xs;
+}
+
+.notes_create_icon {
+  @apply flex h-5 w-5 items-center justify-center text-lg font-light leading-none max-md:h-4 max-md:w-4 max-md:text-base;
+}
+
+.notes_toolbar {
+  @apply mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-neutral-200 bg-white p-3 shadow-sm;
+}
+
+.notes_toolbar_count {
+  @apply rounded-full border border-neutral-200 px-3 py-1.5 text-sm text-neutral-600;
+}
+
+.notes_empty {
+  @apply flex flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-200 bg-white px-6 py-20 text-center;
+}
+
+.notes_empty_title {
+  @apply mt-4 text-lg font-semibold text-black;
+}
+
+.notes_empty_text {
+  @apply mt-1 text-sm text-neutral-500;
+}
+
+/* Nav */
 .logo_text {
   @apply  font-inter font-bold text-2xl md:text-3xl text-black tracking-wide;
 }
 
-.sidebar_text{
-  @apply font-inter font-medium text-lg text-black tracking-wide;
-}
-
-.dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
-}
-
-.dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
-}
-
-/* NoteCard Component */
+/* NoteCard */
 .note_card {
-  @apply rounded-lg break-inside-avoid-column break-words  first-letter:bg-clip-padding p-6  w-full h-fit relative;
-}
-/* backdrop-blur-lg backdrop-filter */
-
-.note_card_border{
-  @apply rounded-lg border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+  @apply relative flex min-h-[160px] flex-col rounded-2xl border border-black/5 p-5 pb-12 shadow-sm transition-shadow duration-200 hover:shadow-md;
 }
 
-.checkbox{
-  position: absolute;
-  top: -3%;
-  left: -3%;
+.note_card_selected {
+  @apply ring-2 ring-black ring-offset-2;
 }
 
-.note_card_button{
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
+.note_card_checkbox {
+  @apply absolute -right-2 -top-2 z-10 cursor-pointer rounded-full bg-white p-0.5 shadow-sm opacity-0 transition-opacity duration-200 pointer-events-none;
 }
 
-.flex-center {
-  @apply flex justify-center items-center;
+.note_card_checkbox_visible {
+  @apply opacity-100 pointer-events-auto;
 }
 
-.flex-start {
-  @apply flex justify-start items-start;
+.note_body {
+  @apply mt-2 flex-1 text-sm leading-relaxed text-neutral-700 line-clamp-6;
 }
 
-.flex-end {
-  @apply flex justify-end items-center;
+.note_card_actions {
+  @apply absolute bottom-4 right-4 flex items-center gap-1 opacity-0 transition-opacity duration-200 pointer-events-none;
 }
 
-.flex-between {
-  @apply flex justify-between items-center;
+.note_card_actions_visible {
+  @apply opacity-100 pointer-events-auto;
 }
 
-/* custom css */
+.note_card_action {
+  @apply flex h-8 w-8 items-center justify-center rounded-lg bg-white/80 shadow-sm transition-colors hover:bg-white;
+}
+
+.note_card_action_danger {
+  @apply hover:bg-red-50;
+}
 
 .note_heading {
-  @apply font-inter text-xl font-semibold leading-[1] text-black sm:text-2xl;
+  @apply font-inter text-lg font-semibold leading-snug text-black;
 }
 
 textarea {
@@ -212,7 +251,150 @@ textarea {
   background-color: transparent;
 }
 
+/* Modal */
+.modal_overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm;
+}
 
-.clicked{
-  @apply bg-gray-200;
+.modal_panel {
+  @apply w-full max-w-lg rounded-2xl bg-white shadow-2xl;
+}
+
+.modal_header {
+  @apply flex items-center justify-between border-b border-neutral-100 px-5 py-4;
+}
+
+.modal_title {
+  @apply text-lg font-semibold text-black;
+}
+
+.modal_close {
+  @apply flex h-8 w-8 items-center justify-center rounded-full text-2xl leading-none text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-black;
+}
+
+.modal_body {
+  @apply p-5;
+}
+
+.loading_dots_page {
+  @apply flex w-full items-center justify-center pt-24;
+}
+
+.loading_dots_inline {
+  @apply flex min-h-[260px] w-full items-center justify-center;
+}
+
+/* Note form (modal + edit page) */
+.note_form {
+  @apply flex flex-col rounded-2xl p-5;
+}
+
+.note_form_title {
+  @apply mb-2 w-full bg-transparent text-xl font-semibold text-black placeholder:text-neutral-400;
+}
+
+.note_form_body {
+  @apply mb-4 w-full bg-transparent text-sm leading-relaxed text-neutral-800 placeholder:text-neutral-400;
+}
+
+.note_form_footer {
+  @apply flex items-center justify-between gap-4;
+}
+
+.note_form_actions {
+  @apply flex items-center gap-2;
+}
+
+.note_form_actions .outline_btn,
+.note_form_actions .black_btn {
+  @apply h-10 min-w-[5.75rem] px-5;
+}
+
+.note_form_color_btn {
+  @apply rounded-full p-0.5 transition-transform hover:scale-105;
+}
+
+.note_form_color_dot {
+  @apply grid h-8 w-8 shrink-0 grid-cols-2 grid-rows-2 overflow-hidden rounded-full border-2 border-black/20 shadow-sm;
+}
+
+.note_form_color_menu {
+  @apply absolute bottom-full left-0 mb-2 flex rounded-xl border border-neutral-200 bg-white p-1 shadow-lg;
+}
+
+.note_form_color_option {
+  @apply h-10 w-10 transition-opacity hover:opacity-80;
+}
+
+.note_form_color_option_selected {
+  box-shadow: inset 0 0 0 2px #000;
+}
+
+/* Landing page */
+.home_page {
+  @apply mx-auto max-w-screen-2xl;
+}
+
+.home_hero {
+  @apply mt-20 flex flex-col items-center justify-center gap-2 overflow-hidden p-6 text-center;
+}
+
+.home_title {
+  @apply text-center text-[28px] font-bold md:text-[62px];
+}
+
+.home_tagline {
+  @apply mb-2 max-w-[605px] text-center text-sm font-medium text-[#8A8A8A] md:text-lg;
+}
+
+.home_cta {
+  @apply outline_btn px-10 py-2 text-xl font-semibold;
+}
+
+.home_section {
+  @apply mx-auto flex max-w-[700px] flex-col items-center justify-center p-6;
+}
+
+.home_section_title {
+  @apply text-[40px] font-bold;
+}
+
+.home_section_text {
+  @apply mb-2 text-center text-sm font-medium text-[#8A8A8A] md:text-lg;
+}
+
+.home_section_link {
+  @apply text-lg font-semibold underline;
+}
+
+.home_illustration {
+  @apply -z-50 mt-[-50px] w-full object-contain md:mt-[-180px];
+}
+
+.home_footer {
+  @apply flex w-full items-center justify-between border-t border-black px-6 dark:border-gray-800;
+}
+
+.home_footer_brand {
+  @apply text-lg font-bold;
+}
+
+.home_slider {
+  @apply -z-50 mx-auto flex flex-col items-center justify-center gap-5 overflow-hidden md:mt-[-50px] md:flex-row;
+}
+
+.home_slider_card {
+  @apply mb-4 flex min-h-[250px] w-full max-w-[350px] flex-col items-start rounded-lg p-8 shadow-md transition-transform duration-500;
+}
+
+.home_slider_card_offset {
+  @apply md:mb-[200px];
+}
+
+.home_slider_card_title {
+  @apply mb-2 text-start text-[24px] font-bold;
+}
+
+.home_slider_card_text {
+  @apply text-start text-sm leading-relaxed;
 }
