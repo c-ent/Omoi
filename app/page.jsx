@@ -1,39 +1,48 @@
-import ButtonOutlineBlack from "@components/buttons/ButtonOutlineBlack"
-import Nav from "@components/Nav"
-import Slider from "@components/Slider"
-import Link from "next/link"
-import Image from 'next/image';
-export default function Page() {
+import Link from "next/link";
+import Nav from "@components/layout/Nav";
+import Slider from "@components/marketing/Slider";
+import Image from "next/image";
+
+export default function HomePage() {
   return (
-    <div>
-      <Nav/>
-      <div id="home" className="flex flex-col items-center justify-center  text-center p-6 gap-2 mt-20 overflow-hidden" >
-        <h1 className="text-[28px] md:text-[62px] text-center font-bold">Simplify Your Thoughts,<br/> Organize Your Ideas.</h1>
-        <p className="max-w-[605px] text-center text-sm md:text-lg  text-[#8A8A8A] font-medium mb-2">Omoi, derived from the Japanese word "Omoidasu," which means "to remember," is your ultimate tool for capturing and reflecting on your thoughts</p>
-        <Link href="/notes">
-          <ButtonOutlineBlack text="Write"/>
+    <div className="home_page">
+      <Nav />
+      <div id="home" className="home_hero">
+        <h1 className="home_title">
+          Simplify Your Thoughts,
+          <br /> Organize Your Ideas.
+        </h1>
+        <p className="home_tagline">
+          A calm space to capture ideas, color-code what matters, and pick up right where you left off.
+        </p>
+        <Link href="/notes" className="home_cta">
+          Write
         </Link>
-        <Slider className=""/>
+        <Slider />
       </div>
 
-      <section className="flex flex-col  items-center justify-center max-w-[700px] mx-auto">
-        <p className="font-bold text-[40px]"> “To Remember”</p>
-        <p className="text-center text-sm md:text-lg  text-[#8A8A8A] font-medium mb-2">Omoi, derived from the Japanese word "Omoidasu," which means "to remember," is your ultimate tool for capturing and reflecting on your thoughts and ideas. </p>
-        <Link href="#" className="font-semibold underline text-lg">Get Started for free</Link>
-      
-        <Image 
-            src="/assets/images/astro.webp"
-            alt="astro"
-            width={1920}
-            height={400}
-            className="w-full object-contain mt-[-50px] md:mt-[-180px] -z-50"
+      <section className="home_section">
+        <p className="home_section_title">&quot;To Remember&quot;</p>
+        <p className="home_section_text">
+          Omoi comes from the Japanese word <em>omoidasu</em> (思い出す)—to remember. It is a private notebook for the thoughts you do not want to lose.
+        </p>
+        <Link href="/notes" className="home_section_link">
+          Get Started for free
+        </Link>
+
+        <Image
+          src="/assets/images/astro.webp"
+          alt="Omoi illustration"
+          width={1920}
+          height={400}
+          className="home_illustration"
         />
       </section>
 
-      <div className='flex items-center justify-between border-t border-black dark:border-gray-800 pace-between w-full px-6  '>
-        <h1 className='font-bold text-lg'>Omoi</h1>
+      <div className="home_footer">
+        <h1 className="home_footer_brand">Omoi</h1>
         <p>© {new Date().getFullYear()}</p>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
