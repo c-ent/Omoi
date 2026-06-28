@@ -2,7 +2,7 @@ import Link from "next/link";
 import Nav from "@components/layout/Nav";
 import Slider from "@components/marketing/Slider";
 import Image from "next/image";
-
+ 
 export default function HomePage() {
   return (
     <div className="home_page">
