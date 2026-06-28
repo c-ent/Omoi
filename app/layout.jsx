@@ -1,26 +1,17 @@
 import '@styles/global.css';
-import Nav from '@components/Nav.jsx';
-import Provider from '@components/Provider.jsx';
-import Sidebar from '@components/Sidebar';
-
+import SessionProviderWrapper from '@components/providers/SessionProvider';
 
 export const metadata = {
-    title:"Omoi",
-    description:"An intuitive note application for managing and storing your notes seamlessly",
-    logo: "/assets/images/logo.svg"
-}
+  title: "Omoi",
+  description: "An intuitive note application for managing and storing your notes seamlessly",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Provider>
-          <div className='max-w-screen-2xl mx-auto'>
-            {children}
-          </div>
-        </Provider>
+        <SessionProviderWrapper>{children}</SessionProviderWrapper>
       </body>
     </html>
-  )
+  );
 }
-

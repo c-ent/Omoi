@@ -1,31 +1,33 @@
 import { Schema, model, models } from "mongoose";
+import { NOTE_COLOR_KEYS, DEFAULT_NOTE_COLOR } from "@lib/note-validation";
 
-
-const NoteSchema = new Schema({
-    creator:{
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: [true, "User is required"],
+const NoteSchema = new Schema(
+  {
+    creator: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: [true, "User is required"],
     },
-
-    noteTitle:{
-        type: String,
-        required: [true, "Title is required"],
+    noteTitle: {
+      type: String,
+      required: [true, "Title is required"],
     },
-    noteBody:{
-        type: String,
-        required: [true, "BodyText is required"],
+    noteBody: {
+      type: String,
+      required: [true, "Body is required"],
     },
     bgColor: {
-        type: String, 
-        default: "bg-yellow-200",    
+      type: String,
+      enum: NOTE_COLOR_KEYS,
+      default: DEFAULT_NOTE_COLOR,
     },
-    isShown: {
-        type: Number, // Setting the type to Number
-        default: 1,    // Setting the default value to 1
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
-    
-})
+  },
+  { timestamps: true }
+);
 
 const Note = models.Note || model("Note", NoteSchema);
 
