@@ -11,3 +11,8 @@ export function resolveSelectAll(selectAll, itemIds) {
 export function pruneSelection(selectedIds, itemIds) {
   return selectedIds.filter((id) => itemIds.includes(id));
 }
+
+export function selectionsEqual(a, b) {
+  if (a.length !== b.length) return false;
+  return a.every((id, index) => id === b[index]);
+}
