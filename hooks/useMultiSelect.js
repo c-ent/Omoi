@@ -4,13 +4,25 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import {
   pruneSelection,
   resolveSelectAll,
+  selectionsEqual,
   toggleSelection,
 } from "@hooks/multi-select-utils";
 
-export function useMultiSelect(items = [], getItemId = (item) => item._id) {
+const defaultGetItemId = (item) => item._id;
+
+export function useMultiSelect(items = [], getItemId = defaultGetItemId) {
   const [selectedIds, setSelectedIds] = useState([]);
 
-  const itemIds = useMemo(() => items.map(getItemId), [items, getItemId]);
+  const itemIdsKey = useMemo(
+    () => items.map(getItemId).join("\0"),
+    [items, getItemId]
+  );
+
+  const itemIds = useMemo(
+    () => (itemIdsKey ? itemIdsKey.split("\0") : []),
+    [itemIdsKey]
+  );
+
   const selectAll = items.length > 0 && selectedIds.length === items.length;
 
   const toggleSelect = useCallback((id) => {
@@ -26,8 +38,12 @@ export function useMultiSelect(items = [], getItemId = (item) => item._id) {
   }, []);
 
   useEffect(() => {
-    setSelectedIds((prev) => pruneSelection(prev, itemIds));
-  }, [itemIds]);
+    const ids = itemIdsKey ? itemIdsKey.split("\0") : [];
+    setSelectedIds((prev) => {
+      const next = pruneSelection(prev, ids);
+      return selectionsEqual(prev, next) ? prev : next;
+    });
+  }, [itemIdsKey]);
 
   return { selectedIds, selectAll, toggleSelect, handleSelectAll, clearSelection };
 }
