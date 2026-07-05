@@ -12,9 +12,14 @@ const NAV_ITEMS = [
   { href: "/notes/trash", label: "Trash", icon: "/assets/icons/trash.svg" },
 ];
 
-function NavLink({ href, label, icon, isActive }) {
+function NavLink({ href, label, icon, isActive, onNavigate }) {
   return (
-    <Link href={href} className={`sidebar_link ${isActive ? "sidebar_link_active" : ""}`} title={label}>
+    <Link
+      href={href}
+      onClick={onNavigate}
+      className={`sidebar_link ${isActive ? "sidebar_link_active" : ""}`}
+      title={label}
+    >
       <Image src={icon} alt="" width={22} height={22} className="shrink-0 object-contain" />
       <span className="sidebar_link_label">{label}</span>
     </Link>
@@ -33,12 +38,25 @@ export default function Sidebar() {
     getProviders().then(setProviders);
   }, []);
 
+  const closeSidebar = () => {
+    setExpanded(false);
+    document.body.style.overflow = "";
+  };
+
+  const toggleSidebar = () => {
+    setExpanded((prev) => {
+      const next = !prev;
+      document.body.style.overflow = next ? "hidden" : "";
+      return next;
+    });
+  };
+
   return (
     <>
       <button
         type="button"
         className="sidebar_mobile_toggle md:hidden"
-        onClick={() => setExpanded((prev) => !prev)}
+        onClick={toggleSidebar}
         aria-label="Toggle sidebar"
       >
         <Image src="/assets/icons/sidemenu.svg" alt="" width={24} height={24} />
@@ -48,7 +66,7 @@ export default function Sidebar() {
         <button
           type="button"
           className="sidebar_overlay md:hidden"
-          onClick={() => setExpanded(false)}
+          onClick={closeSidebar}
           aria-label="Close sidebar"
         />
       )}
@@ -58,7 +76,7 @@ export default function Sidebar() {
         aria-label="Main navigation"
       >
         <div className="sidebar_inner">
-          <Link href="/notes" className="sidebar_brand" onClick={() => setExpanded(false)}>
+          <Link href="/notes" className="sidebar_brand" onClick={closeSidebar}>
             <Image src="/assets/images/logo.svg" alt="Omoi" width={28} height={28} />
             <span className="sidebar_brand_text">Omoi</span>
           </Link>
@@ -68,6 +86,7 @@ export default function Sidebar() {
               <NavLink
                 key={item.href}
                 {...item}
+                onNavigate={closeSidebar}
                 isActive={
                   item.href === "/notes"
                     ? pathname === "/notes"
@@ -81,7 +100,7 @@ export default function Sidebar() {
             type="button"
             className="sidebar_create_btn"
             onClick={() => {
-              setExpanded(false);
+              closeSidebar();
               if (pathname === "/notes") {
                 openCreateNote();
               } else {

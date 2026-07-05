@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="home_page">
       <Nav />
-      <div id="home" className="home_hero">
+      <main id="home" className="home_hero">
         <h1 className="home_title">
           Simplify Your Thoughts,
           <br /> Organize Your Ideas.
@@ -19,12 +19,12 @@ export default function HomePage() {
           Write
         </Link>
         <Slider />
-      </div>
+      </main>
 
       <section className="home_section">
         <p className="home_section_title">&quot;To Remember&quot;</p>
         <p className="home_section_text">
-          Omoi comes from the Japanese word <em>omoidasu</em> (思い出す)—to remember. It is a private notebook for the thoughts you do not want to lose.
+          Omoi comes from the Japanese word <em>omoidasu</em> (思い出す)-to remember. It is a private notebook for the thoughts you do not want to lose.
         </p>
         <Link href="/notes" className="home_section_link">
           Get Started for free
@@ -39,10 +39,10 @@ export default function HomePage() {
         />
       </section>
 
-      <div className="home_footer">
-        <h1 className="home_footer_brand">Omoi</h1>
+      <footer className="home_footer">
+        <p className="home_footer_brand">Omoi</p>
         <p>© {new Date().getFullYear()}</p>
-      </div>
+      </footer>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
@@ -12,28 +11,25 @@ export default function NoteCard({
   isSelected,
   onToggleSelect,
   handleEdit,
+  handleTrash,
   handleDelete,
   handleRestore,
 }) {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const [isHovered, setIsHovered] = useState(false);
   const isOwner = session?.user?.id === getCreatorId(note.creator);
   const isTrashPage = pathname === "/notes/trash";
   const isNotesPage = pathname === "/notes";
   const showActions = isNotesPage || (isOwner && isTrashPage);
-  const actionsVisible = (isHovered || isSelected) && showActions;
 
   return (
     <article
       className={`note_card ${getColorClass(note.bgColor)} ${
         isSelected ? "note_card_selected" : ""
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <label
-        className={`note_card_checkbox ${isHovered || isSelected ? "note_card_checkbox_visible" : ""}`}
+        className={`note_card_checkbox ${isSelected ? "note_card_checkbox_visible" : ""}`}
       >
         <input
           type="checkbox"
@@ -43,7 +39,7 @@ export default function NoteCard({
         />
         <Image
           src={isSelected ? "/assets/icons/checked.svg" : "/assets/icons/uncheck.svg"}
-          alt="Select note"
+          alt=""
           width={24}
           height={24}
           className="object-contain"
@@ -54,10 +50,22 @@ export default function NoteCard({
       <p className="note_body">{note.noteBody}</p>
 
       {showActions && (
-        <div className={`note_card_actions ${actionsVisible ? "note_card_actions_visible" : ""}`}>
+        <div
+          className={`note_card_actions ${isSelected ? "note_card_actions_visible" : ""}`}
+        >
           {isNotesPage && handleEdit && (
             <button type="button" onClick={handleEdit} className="note_card_action" title="Edit">
               <Image src="/assets/icons/pen.svg" alt="" width={18} height={18} />
+            </button>
+          )}
+          {isNotesPage && handleTrash && (
+            <button
+              type="button"
+              onClick={handleTrash}
+              className="note_card_action note_card_action_danger"
+              title="Move to trash"
+            >
+              <Image src="/assets/icons/trash.svg" alt="" width={18} height={18} />
             </button>
           )}
           {isOwner && isTrashPage && (

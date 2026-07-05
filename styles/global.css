@@ -4,9 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,p,h2,a,button,span,div,textarea {
+h1,
+p,
+h2,
+a,
+button,
+span,
+div,
+textarea {
   font-family: "Inter", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-black antialiased;
+}
+
 
 /* Tailwind Styles */
 
@@ -52,24 +68,12 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .notes_mobile_topbar {
-  @apply pointer-events-none fixed inset-x-0 top-0 z-40 h-16 bg-transparent transition-all duration-200 md:hidden;
-}
-
-.notes_shell_scrolled .notes_mobile_topbar {
-  @apply border-b border-neutral-200/80 bg-white/95 shadow-sm backdrop-blur-md;
-}
-
-.notes_shell_scrolled .sidebar_mobile_toggle {
-  @apply border-neutral-200 bg-white shadow-md;
-}
-
-.notes_shell_scrolled .notes_create_btn_mobile {
-  @apply shadow-md;
+  @apply pointer-events-none fixed inset-x-0 top-0 z-20 h-16 border-b border-neutral-200/80 bg-white/95 shadow-sm backdrop-blur-md md:hidden;
 }
 
 /* Sidebar */
 .sidebar_mobile_toggle {
-  @apply fixed top-4 left-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm;
+  @apply fixed top-4 left-4 z-[60] flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm;
 }
 
 .sidebar_overlay {
@@ -77,7 +81,7 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .sidebar {
-  @apply fixed top-0 left-0 z-40 flex h-screen w-64 -translate-x-full flex-col border-r border-neutral-200 bg-white transition-transform duration-300 md:sticky md:translate-x-0;
+  @apply fixed top-0 left-0 z-50 flex h-screen w-64 -translate-x-full flex-col border-r border-neutral-200 bg-white transition-transform duration-300 md:sticky md:translate-x-0;
 }
 
 .sidebar_expanded {
@@ -150,7 +154,11 @@ h1,p,h2,a,button,span,div,textarea {
 
 /* Notes page */
 .notes_page_header {
-  @apply mb-6 flex flex-wrap items-start justify-between gap-4;
+  @apply my-6 flex flex-wrap items-start justify-between gap-4;
+}
+
+.notes_page_heading {
+  @apply min-w-0 flex-1;
 }
 
 .notes_page_title {
@@ -166,7 +174,7 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .notes_create_btn_mobile {
-  @apply max-md:fixed max-md:right-4 max-md:top-4 max-md:z-50 max-md:h-10 max-md:px-3 max-md:py-0 max-md:shadow-sm;
+  @apply max-md:fixed max-md:right-4 max-md:top-4 max-md:z-20 max-md:h-10 max-md:px-3 max-md:py-0 max-md:shadow-sm;
 }
 
 .notes_create_label {
@@ -198,8 +206,28 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 /* Nav */
+.nav_bar {
+  @apply sticky top-0 z-30 border-b border-neutral-200/80 bg-white/90 shadow-sm backdrop-blur-md;
+}
+
+.nav_inner {
+  @apply mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8;
+}
+
+.nav_brand {
+  @apply flex min-w-0 items-center gap-2 transition-opacity hover:opacity-80;
+}
+
 .logo_text {
-  @apply  font-inter font-bold text-2xl md:text-3xl text-black tracking-wide;
+  @apply font-inter text-xl font-bold tracking-tight text-black sm:text-2xl md:text-3xl;
+}
+
+.nav_actions {
+  @apply flex shrink-0 items-center gap-2 sm:gap-3;
+}
+
+.nav_profile {
+  @apply hidden rounded-full sm:block;
 }
 
 /* NoteCard */
@@ -212,11 +240,24 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .note_card_checkbox {
-  @apply absolute -right-2 -top-2 z-10 cursor-pointer rounded-full bg-white p-0.5 shadow-sm opacity-0 transition-opacity duration-200 pointer-events-none;
+  @apply absolute -right-2 -top-2 z-10 cursor-pointer rounded-full bg-white p-0.5 shadow-sm transition-opacity duration-200;
 }
 
-.note_card_checkbox_visible {
-  @apply opacity-100 pointer-events-auto;
+@media (hover: hover) and (pointer: fine) {
+  .note_card_checkbox {
+    @apply opacity-0 pointer-events-none;
+  }
+
+  .note_card:hover .note_card_checkbox,
+  .note_card_checkbox_visible {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .note_card_checkbox {
+    @apply opacity-100 pointer-events-auto;
+  }
 }
 
 .note_body {
@@ -224,11 +265,24 @@ h1,p,h2,a,button,span,div,textarea {
 }
 
 .note_card_actions {
-  @apply absolute bottom-4 right-4 flex items-center gap-1 opacity-0 transition-opacity duration-200 pointer-events-none;
+  @apply absolute bottom-4 right-4 flex items-center gap-1 transition-opacity duration-200;
 }
 
-.note_card_actions_visible {
-  @apply opacity-100 pointer-events-auto;
+@media (hover: hover) and (pointer: fine) {
+  .note_card_actions {
+    @apply opacity-0 pointer-events-none;
+  }
+
+  .note_card:hover .note_card_actions,
+  .note_card_actions_visible {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .note_card_actions {
+    @apply opacity-100 pointer-events-auto;
+  }
 }
 
 .note_card_action {
@@ -257,11 +311,11 @@ textarea {
 }
 
 .modal_panel {
-  @apply w-full max-w-lg rounded-2xl bg-white shadow-2xl;
+  @apply max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl;
 }
 
 .modal_header {
-  @apply flex items-center justify-between border-b border-neutral-100 px-5 py-4;
+  @apply flex items-center justify-between border-b border-neutral-100 px-5 py-2;
 }
 
 .modal_title {
@@ -336,59 +390,67 @@ textarea {
 }
 
 .home_hero {
-  @apply mt-20 flex flex-col items-center justify-center gap-2 overflow-hidden p-6 text-center;
+  @apply flex flex-col items-center justify-center gap-3 overflow-hidden px-4 pb-8 pt-10 text-center sm:px-6 sm:pt-14 lg:px-8;
 }
 
 .home_title {
-  @apply text-center text-[28px] font-bold md:text-[62px];
+  @apply text-center text-3xl font-bold leading-tight sm:text-5xl md:text-6xl;
 }
 
 .home_tagline {
-  @apply mb-2 max-w-[605px] text-center text-sm font-medium text-[#8A8A8A] md:text-lg;
+  @apply mb-2 max-w-[605px] text-center text-sm font-medium text-neutral-500 md:text-lg;
 }
 
 .home_cta {
-  @apply outline_btn px-10 py-2 text-xl font-semibold;
+  @apply outline_btn px-8 py-2.5 text-base font-semibold sm:px-10 sm:text-xl;
 }
 
 .home_section {
-  @apply mx-auto flex max-w-[700px] flex-col items-center justify-center p-6;
+  @apply mx-auto flex max-w-[700px] flex-col items-center gap-3 justify-center px-4 py-10 sm:px-6 lg:px-8;
 }
 
 .home_section_title {
-  @apply text-[40px] font-bold;
+  @apply text-center text-3xl font-bold sm:text-4xl md:text-[40px];
 }
 
 .home_section_text {
-  @apply mb-2 text-center text-sm font-medium text-[#8A8A8A] md:text-lg;
+  @apply mb-4 text-center text-sm font-medium leading-relaxed text-neutral-500 md:text-lg;
 }
 
 .home_section_link {
-  @apply text-lg font-semibold underline;
+  @apply rounded-full border border-black px-6 py-2.5 text-sm font-semibold transition-colors hover:bg-black hover:text-white sm:text-base;
 }
 
 .home_illustration {
-  @apply -z-50 mt-[-50px] w-full object-contain md:mt-[-180px];
+  @apply w-full object-contain;
 }
 
 .home_footer {
-  @apply flex w-full items-center justify-between border-t border-black px-6 dark:border-gray-800;
+  @apply mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-between gap-2 border-t border-neutral-200 px-4 py-2 text-sm text-neutral-500 sm:flex-row sm:px-6 lg:px-8;
 }
 
 .home_footer_brand {
-  @apply text-lg font-bold;
+  @apply text-base font-bold text-black sm:text-lg;
 }
 
 .home_slider {
-  @apply -z-50 mx-auto flex flex-col items-center justify-center gap-5 overflow-hidden md:mt-[-50px] md:flex-row;
+  @apply mx-auto mt-8 flex w-full max-w-6xl flex-col items-stretch justify-center gap-4 px-2 sm:gap-5 md:mt-4 md:flex-row md:items-end md:gap-6 lg:gap-8;
 }
 
 .home_slider_card {
-  @apply mb-4 flex min-h-[250px] w-full max-w-[350px] flex-col items-start rounded-lg p-8 shadow-md transition-transform duration-500;
+  @apply flex min-h-[220px] w-full flex-col items-start rounded-2xl border border-black/5 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md sm:min-h-[250px] sm:p-8 md:max-w-[350px];
 }
 
 .home_slider_card_offset {
-  @apply md:mb-[200px];
+  @apply md:mb-16 lg:mb-24;
+}
+
+.sign_in_prompt {
+  @apply mx-auto flex max-w-sm flex-col items-center rounded-2xl border border-dashed border-neutral-200 bg-white px-8 py-12 text-center shadow-sm;
+}
+
+.sign_in_prompt_text {
+  @apply mt-4 text-base font-medium text-neutral-700;
 }
 
 .home_slider_card_title {

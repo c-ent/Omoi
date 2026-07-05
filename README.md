@@ -1,18 +1,18 @@
 # Omoi 📝
 
-**Omoi** (思い出す — "to remember" in Japanese) is a simple, open-source note-taking app built with Next.js.
+**Omoi** (思い出す - "to remember" in Japanese) is a simple, open-source note-taking app built with Next.js.
 
 ![Omoi App Screenshot](public/assets/images/web.PNG)
 
 ## Features
 
-- **Clean interface** — distraction-free note-taking with modal create/edit
-- **Google sign-in** — private notes per user via NextAuth.js
-- **Full CRUD** — create, read, update, delete notes
-- **Color coding** — yellow, red, blue, and green note colors
-- **Trash** — soft-delete, restore, and permanent delete
-- **Bulk actions** — multi-select and move notes to trash
-- **Responsive** — works on desktop and mobile
+- **Clean interface** - distraction-free note-taking with modal create/edit
+- **Google sign-in** - private notes per user via NextAuth.js
+- **Full CRUD** - create, read, update, delete notes
+- **Color coding** - yellow, red, blue, and green note colors
+- **Trash** - soft-delete, restore, and permanent delete
+- **Bulk actions** - multi-select and move notes to trash
+- **Responsive** - works on desktop and mobile
 
 ## Tech Stack
 
@@ -204,7 +204,7 @@ omoi/
 
 **Color options:** yellow (default), red, blue, green
 
-**Authentication:** Google OAuth via NextAuth — each user only sees their own notes
+**Authentication:** Google OAuth via NextAuth - each user only sees their own notes
 
 ## Contributing
 
@@ -218,4 +218,4 @@ Contributions are welcome.
 
 ## License
 
-This project is open source and available under the MIT License — see the `LICENSE` file for details.
+This project is open source and available under the MIT License - see the `LICENSE` file for details.

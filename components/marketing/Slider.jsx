@@ -14,7 +14,7 @@ const SLIDES = [
   {
     colorKey: "yellow",
     title: "Yours alone",
-    text: "Sign in with Google and keep every note private to your account—no sharing, no noise.",
+    text: "Sign in with Google and keep every note private to your account-no sharing, no noise.",
   },
 ];
 

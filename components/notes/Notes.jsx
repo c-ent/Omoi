@@ -94,6 +94,7 @@ export default function Notes({ data, handleEdit, handleTrash, loading, error, o
               key={note._id}
               note={note}
               handleEdit={() => handleEdit(note)}
+              handleTrash={() => handleTrash(note)}
               isSelected={selectedIds.includes(note._id)}
               onToggleSelect={() => toggleSelect(note._id)}
             />
